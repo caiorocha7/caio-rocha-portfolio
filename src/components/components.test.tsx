@@ -41,7 +41,11 @@ describe('ProjectCard', () => {
     expect(screen.getByRole('heading', { name: 'DocPilot AI' })).toBeInTheDocument();
     expect(screen.getByText('182 testes')).toBeInTheDocument();
     const img = screen.getByAltText(project.screenshots[0].alt.pt);
-    expect(img).toHaveAttribute('src', '/projects/docpilot-ai/03-chat-citations.webp');
+    // o prefixo depende de NEXT_PUBLIC_BASE_PATH (vazio localmente, /caio-rocha-portfolio no CI)
+    expect(img).toHaveAttribute(
+      'src',
+      `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/projects/docpilot-ai/03-chat-citations.webp`,
+    );
     expect(screen.getByRole('list', { name: 'Tecnologias' })).toHaveTextContent('pgvector');
     expect(screen.getByRole('link', { name: /Ver estudo de caso: DocPilot AI/ })).toHaveAttribute(
       'href',
