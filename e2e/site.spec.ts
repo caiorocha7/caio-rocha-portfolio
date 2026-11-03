@@ -68,16 +68,16 @@ test.describe('home', () => {
       await expect(page.locator(`a[href="${p.repo}"]`).first()).toBeAttached();
   });
 
-  test('currículo PDF real está disponível para download', async ({ page, request }) => {
-    await page.goto('pt/');
-    const link = page.getByRole('link', { name: 'Currículo (PDF)' });
-    await expect(link).toHaveAttribute('download', '');
-    const href = await link.getAttribute('href');
-    expect(href).toBe(`${BASE}/resume/Caio_Rocha_Curriculo_2026.pdf`);
-    const res = await request.get(href!);
-    expect(res.status()).toBe(200);
-    expect(res.headers()['content-type']).toContain('application/pdf');
-    expect((await res.body()).subarray(0, 4).toString()).toBe('%PDF');
+  test('download de currículo está desativado (enviado sob medida por vaga)', async ({
+    page,
+    request,
+  }) => {
+    for (const locale of ['pt', 'en']) {
+      await page.goto(`${locale}/`);
+      await expect(page.getByRole('link', { name: /Currículo|Résumé/ })).toHaveCount(0);
+      await expect(page.locator('a[href*="/resume/"]')).toHaveCount(0);
+    }
+    expect((await request.get(`${BASE}/resume/Caio_Rocha_Curriculo_2026.pdf`)).status()).toBe(404);
   });
 
   test('todos os links internos respondem 200', async ({ page, request }) => {

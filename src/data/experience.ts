@@ -13,7 +13,7 @@ export const experience: Experience[] = [
   {
     company: { pt: 'MetaMundi', en: 'MetaMundi' },
     role: { pt: 'Desenvolvedor de Software (Full Stack)', en: 'Software Developer (Full Stack)' },
-    period: { pt: 'jul/2025 – nov/2026', en: 'Jul 2025 – Nov 2026' },
+    period: { pt: 'jul/2025 a nov/2026', en: 'Jul 2025 to Nov 2026' },
     context: {
       pt: 'Remoto · PJ até mar/2026, CLT de abr/2026 a nov/2026',
       en: 'Remote · contractor until Mar 2026, full-time employee from Apr to Nov 2026',
@@ -54,7 +54,7 @@ export const experience: Experience[] = [
       en: 'Municipal Department of Education',
     },
     role: { pt: 'Estagiário de Tecnologia da Informação', en: 'IT Intern' },
-    period: { pt: 'abr/2024 – set/2025', en: 'Apr 2024 – Sep 2025' },
+    period: { pt: 'abr/2024 a set/2025', en: 'Apr 2024 to Sep 2025' },
     context: { pt: 'Teresina, PI · presencial', en: 'Teresina, Brazil · on-site' },
     highlights: {
       pt: [

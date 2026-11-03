@@ -16,7 +16,7 @@ export interface Project {
   slug: 'routeops' | 'docpilot-ai' | 'connecthub';
   name: string;
   repo: string;
-  /** Demonstração pública — apenas se existir. */
+  /** Demonstração pública, apenas se existir. */
   demo?: string;
   tagline: Localized;
   summary: Localized;
@@ -88,11 +88,11 @@ export const projects: Project[] = [
     problem: {
       pt: [
         'Operações de entrega costumam ficar espalhadas entre planilhas, mensagens e sistemas desconectados: é difícil saber quais entregas estão atrasadas, qual motorista está com qual veículo ou o que aconteceu com uma carga.',
-        'O RouteOps centraliza esse fluxo em uma única interface. As regras — transições de status, disponibilidade de motoristas e veículos, cálculo de atraso — são aplicadas no servidor, e os indicadores usam exatamente as mesmas regras.',
+        'O RouteOps centraliza esse fluxo em uma única interface. As regras de transição de status, disponibilidade de motoristas e veículos e cálculo de atraso são aplicadas no servidor, e os indicadores usam exatamente as mesmas regras.',
       ],
       en: [
         'Delivery operations are often scattered across spreadsheets, chat messages and disconnected tools: it is hard to tell which deliveries are late, which driver has which vehicle or what happened to a shipment.',
-        'RouteOps brings that workflow into a single interface. Business rules — status transitions, driver and vehicle availability, lateness — are enforced on the server, and every metric uses exactly the same rules.',
+        'RouteOps brings that workflow into a single interface. Business rules for status transitions, driver and vehicle availability and lateness are enforced on the server, and every metric uses exactly the same rules.',
       ],
     },
     architecture: [
@@ -403,7 +403,7 @@ export const projects: Project[] = [
         title: { pt: 'Qualidade medida, não presumida', en: 'Measured, not assumed, quality' },
         detail: {
           pt: 'Um harness avalia recuperação, citações, recusa, extração e resistência a injeção, em modo determinístico no CI e com modelo real localmente, incluindo um dataset holdout.',
-          en: 'A harness evaluates retrieval, citations, refusals, extraction and injection resistance — deterministically in CI and with a real model locally, including a holdout set.',
+          en: 'A harness evaluates retrieval, citations, refusals, extraction and injection resistance, both deterministically in CI and with a real model locally, including a holdout set.',
         },
       },
     ],
@@ -438,8 +438,8 @@ export const projects: Project[] = [
       },
     ],
     testsNote: {
-      pt: 'Lint (ruff, ESLint), tipos (mypy, tsc) e testes rodam no CI. As métricas de IA vêm de um dataset pequeno e sintético — são evidência, não garantia.',
-      en: 'Linting (ruff, ESLint), type checks (mypy, tsc) and tests run in CI. The AI metrics come from a small synthetic dataset — evidence, not a guarantee.',
+      pt: 'Lint (ruff, ESLint), tipos (mypy, tsc) e testes rodam no CI. As métricas de IA vêm de um dataset pequeno e sintético. São evidência, não garantia.',
+      en: 'Linting (ruff, ESLint), type checks (mypy, tsc) and tests run in CI. The AI metrics come from a small synthetic dataset, so they are evidence, not a guarantee.',
     },
     limitations: {
       pt: [
@@ -550,11 +550,11 @@ export const projects: Project[] = [
     problem: {
       pt: [
         'Integrar sistemas por webhook parece simples até algo dar errado: o destino cai e o evento se perde, a origem reenvia e o pedido é processado duas vezes, ou ninguém sabe dizer o que foi entregue e por que falhou.',
-        'O ConnectHub ataca cada ponto com mecanismos explícitos — outbox transacional, chave de idempotência, claim de entregas, retentativas classificadas por tipo de erro, histórico completo e transformação declarativa.',
+        'O ConnectHub resolve cada ponto com mecanismos explícitos: outbox transacional, chave de idempotência, claim de entregas, retentativas classificadas por tipo de erro, histórico completo e transformação declarativa.',
       ],
       en: [
         'Webhook integrations look simple until something breaks: the destination goes down and the event is lost, the source retries and the order is processed twice, or nobody can tell what was delivered and why it failed.',
-        'ConnectHub tackles each issue with explicit mechanisms — a transactional outbox, idempotency keys, delivery claiming, retries classified by error type, full history and declarative transformations.',
+        'ConnectHub tackles each issue with explicit mechanisms: a transactional outbox, idempotency keys, delivery claiming, retries classified by error type, full history and declarative transformations.',
       ],
     },
     architecture: [

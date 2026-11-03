@@ -1,4 +1,4 @@
-# Caio Rocha — Portfólio
+# Caio Rocha | Portfólio
 
 [![CI e deploy](https://github.com/caiorocha7/caio-rocha-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/caiorocha7/caio-rocha-portfolio/actions/workflows/ci.yml)
 
@@ -7,17 +7,17 @@ Apresenta três projetos completos com estudos de caso, capturas reais, testes e
 
 **Site:** https://caiorocha7.github.io/caio-rocha-portfolio/
 
-| Português | English |
-|---|---|
+| Português                                   | English                                                           |
+| ------------------------------------------- | ----------------------------------------------------------------- |
 | ![Home](docs/screenshots/home-pt-light.png) | ![Home em inglês, tema escuro](docs/screenshots/home-en-dark.png) |
 
 ## Projetos apresentados
 
-| Projeto | Foco | Repositório |
-|---|---|---|
-| RouteOps | React + NestJS, gestão logística, modelagem de dados, E2E | [routeops-fullstack](https://github.com/caiorocha7/routeops-fullstack) |
-| DocPilot AI | RAG, segurança de LLMs, extração estruturada, avaliações | [docpilot-ai](https://github.com/caiorocha7/docpilot-ai) |
-| ConnectHub | Webhooks, idempotência, filas, outbox transacional | [connecthub-integrations](https://github.com/caiorocha7/connecthub-integrations) |
+| Projeto     | Foco                                                      | Repositório                                                                      |
+| ----------- | --------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| RouteOps    | React + NestJS, gestão logística, modelagem de dados, E2E | [routeops-fullstack](https://github.com/caiorocha7/routeops-fullstack)           |
+| DocPilot AI | RAG, segurança de LLMs, extração estruturada, avaliações  | [docpilot-ai](https://github.com/caiorocha7/docpilot-ai)                         |
+| ConnectHub  | Webhooks, idempotência, filas, outbox transacional        | [connecthub-integrations](https://github.com/caiorocha7/connecthub-integrations) |
 
 ## Stack
 
@@ -43,7 +43,6 @@ src/
 └── styles/globals.css
 public/
 ├── projects/<slug>/*.webp     # capturas reais dos repositórios (geradas por pnpm images)
-├── resume/                    # currículo em PDF fornecido pelo autor
 └── index.html                 # redireciona / para o idioma do navegador
 scripts/                       # otimização de imagens, servidor estático, screenshots do site
 e2e/                           # Playwright
@@ -68,9 +67,9 @@ $env:NEXT_PUBLIC_BASE_PATH='/caio-rocha-portfolio'; pnpm build; pnpm start
 
 ## Manutenção e deploy
 
-Como atualizar textos, projetos, capturas e currículo, e como publicar em outro host:
+Como atualizar textos, projetos e capturas, reativar o currículo e como publicar em outro host:
 [docs/MAINTENANCE.md](docs/MAINTENANCE.md).
 
 ## Licença
 
-Código sob licença MIT. Textos, currículo e capturas de tela pertencem ao autor.
+Código sob licença MIT. Textos e capturas de tela pertencem ao autor.

@@ -2,7 +2,7 @@ import type { Locale } from '@/lib/i18n';
 
 const pt = {
   meta: {
-    title: 'Caio Rocha — Engenheiro de Software',
+    title: 'Caio Rocha | Engenheiro de Software',
     description:
       'Portfólio de Caio Rocha, Engenheiro de Software com foco em backend, full stack, integrações e IA aplicada. Projetos com NestJS, React, FastAPI, Angular, Next.js, RAG e sistemas distribuídos.',
   },
@@ -80,7 +80,7 @@ export type Dictionary = typeof pt;
 
 const en: Dictionary = {
   meta: {
-    title: 'Caio Rocha — Software Engineer',
+    title: 'Caio Rocha | Software Engineer',
     description:
       'Portfolio of Caio Rocha, a Software Engineer focused on backend, full stack, integrations and applied AI. Projects built with NestJS, React, FastAPI, Angular, Next.js, RAG and distributed systems.',
   },

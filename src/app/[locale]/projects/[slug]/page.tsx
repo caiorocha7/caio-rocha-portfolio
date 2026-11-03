@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!isLocale(locale) || !project) return {};
   const path = `projects/${slug}`;
   return {
-    title: `${project.name} — ${project.tagline[locale]}`,
+    title: `${project.name}: ${project.tagline[locale]}`,
     description: project.summary[locale],
     alternates: {
       canonical: absoluteUrl(localePath(locale, path)),
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     },
     openGraph: {
       type: 'article',
-      title: `${project.name} — ${project.tagline[locale]}`,
+      title: `${project.name}: ${project.tagline[locale]}`,
       description: project.summary[locale],
       locale: ogLocale[locale],
       url: absoluteUrl(localePath(locale, path)),
