@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+/* Tema escuro controlado pela classe .dark no <html> (preferência do sistema ou escolha salva) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Cor de destaque: verde-azulado com contraste AA em ambos os temas */
+  --color-accent-50: #f0fdfa;
+  --color-accent-100: #ccfbf1;
+  --color-accent-300: #5eead4;
+  --color-accent-400: #2dd4bf;
+  --color-accent-600: #0d9488;
+  --color-accent-700: #0f766e;
+  --color-accent-800: #115e59;
+}
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply bg-white text-zinc-700 antialiased dark:bg-zinc-950 dark:text-zinc-300;
+}
+
+::selection {
+  @apply bg-accent-100 text-accent-800 dark:bg-accent-800 dark:text-accent-50;
+}
+
+:focus-visible {
+  @apply rounded-sm outline-2 outline-offset-2 outline-accent-600 dark:outline-accent-400;
+}
+
+/* Entrada discreta das seções; desativada para quem prefere menos movimento */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: reveal 0.6s ease-out both;
+  }
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
