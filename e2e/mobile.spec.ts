@@ -6,6 +6,7 @@ test('mobile: sem rolagem horizontal e menu acessível', async ({ page }) => {
     'en/projects/routeops/',
     'pt/projects/connecthub/',
     'pt/experience/crmundi/',
+    'en/experience/',
   ]) {
     await page.goto(path);
     const overflow = await page.evaluate(

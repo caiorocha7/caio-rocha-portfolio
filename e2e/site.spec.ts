@@ -172,7 +172,8 @@ test('SEO: metadata, Open Graph, sitemap e robots', async ({ page, request }) =>
   await expect(page.locator('link[rel="alternate"][hreflang="pt-BR"]')).toBeAttached();
 
   const sitemap = await (await request.get(`${BASE}/sitemap.xml`)).text();
-  expect(sitemap.match(/<loc>/g)).toHaveLength(10);
+  expect(sitemap.match(/<loc>/g)).toHaveLength(12);
+  expect(sitemap).toContain('/pt/experience/');
   expect(sitemap).toContain('/en/experience/crmundi/');
   expect(sitemap).toContain('/pt/projects/connecthub/');
   const robots = await (await request.get(`${BASE}/robots.txt`)).text();
