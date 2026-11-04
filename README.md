@@ -11,11 +11,15 @@ Apresenta três projetos completos com estudos de caso, capturas reais, testes e
 | ------------------------------------------- | ----------------------------------------------------------------- |
 | ![Home](docs/screenshots/home-pt-light.png) | ![Home em inglês, tema escuro](docs/screenshots/home-en-dark.png) |
 
-## Experiência profissional em destaque
+## Estrutura do site
 
-**CRMundi & ChatMundi (MetaMundi, 2025 a 2026):** estudo de caso em `/pt/experience/crmundi/` e
-`/en/experience/crmundi/`. O produto é proprietário: a página descreve apenas a contribuição do autor, usa
-diagramas conceituais originais e não publica capturas, código, nomes internos nem links de ambientes.
+Home: apresentação, sobre, experiência profissional (resumo), projetos pessoais, tecnologias e contato.
+
+- `/pt/experience/` e `/en/experience/`: trajetória profissional (MetaMundi e Secretaria Municipal de Educação de Teresina).
+- `/pt/experience/crmundi/` e `/en/experience/crmundi/`: estudo de caso da experiência na MetaMundi, com contribuições
+  agrupadas por domínio e status de integração. O produto é proprietário: a página descreve apenas a contribuição do
+  autor e não publica capturas, código, nomes internos, topologia de infraestrutura nem links de ambientes.
+- `/pt/projects/<slug>/` e `/en/projects/<slug>/`: estudos de caso dos projetos pessoais.
 
 ## Projetos pessoais apresentados
 

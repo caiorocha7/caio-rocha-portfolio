@@ -26,8 +26,8 @@ const shots = [
     full: true,
   },
   {
-    name: 'home-featured',
-    path: '/pt/#featured',
+    name: 'home-experience',
+    path: '/pt/#experience',
     viewport: { width: 1440, height: 1200 },
     scheme: 'light',
   },
@@ -40,9 +40,16 @@ const shots = [
   },
   {
     name: 'crmundi-en-dark',
-    path: '/en/experience/crmundi/#architecture',
+    path: '/en/experience/crmundi/#domains',
     viewport: { width: 1440, height: 1000 },
     scheme: 'dark',
+  },
+  {
+    name: 'experience-pt',
+    path: '/pt/experience/',
+    viewport: { width: 1440, height: 900 },
+    scheme: 'light',
+    full: true,
   },
   {
     name: 'mobile-crmundi',

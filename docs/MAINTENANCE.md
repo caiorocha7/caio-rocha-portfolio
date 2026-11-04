@@ -2,15 +2,14 @@
 
 ## Onde fica cada conteúdo
 
-| O que mudar                                                            | Arquivo                            |
-| ---------------------------------------------------------------------- | ---------------------------------- |
-| Nome, título, introdução, sobre, formação, links, currículo            | `src/data/profile.ts`              |
-| Experiência profissional                                               | `src/data/experience.ts`           |
-| Estudo de caso CRMundi & ChatMundi (textos, fluxos, limites)           | `src/data/crmundi.ts`              |
-| Diagrama conceitual do CRMundi                                         | `src/components/SystemDiagram.tsx` |
-| Projetos (resumo, arquitetura, decisões, testes, limitações, capturas) | `src/data/projects.ts`             |
-| Stack por categoria                                                    | `src/data/stack.ts`                |
-| Textos da interface (menus, botões, títulos, SEO)                      | `src/data/dictionary.ts`           |
+| O que mudar                                                               | Arquivo                  |
+| ------------------------------------------------------------------------- | ------------------------ |
+| Nome, título, introdução, sobre, formação, links, currículo               | `src/data/profile.ts`    |
+| Experiência profissional                                                  | `src/data/experience.ts` |
+| Experiência MetaMundi, estudo de caso CRMundi (domínios, status, limites) | `src/data/crmundi.ts`    |
+| Projetos (resumo, arquitetura, decisões, testes, limitações, capturas)    | `src/data/projects.ts`   |
+| Stack por categoria                                                       | `src/data/stack.ts`      |
+| Textos da interface (menus, botões, títulos, SEO)                         | `src/data/dictionary.ts` |
 
 Todo texto é um objeto `{ pt, en }`. O teste `src/test/content.test.ts` falha se algum idioma ficar vazio,
 se as chaves dos dicionários divergirem, se uma captura referenciada não existir ou se o total de testes
@@ -43,8 +42,8 @@ Atenção: o PDF publicado fica acessível a qualquer pessoa, inclusive telefone
 ## Estudo de caso CRMundi
 
 Antes de alterar `src/data/crmundi.ts`, confira as evidências da auditoria e respeite os limites de
-atribuição: não publicar capturas sem autorização escrita da MetaMundi, não incluir nomes internos de tabelas,
-endpoints ou ambientes, não citar métricas de negócio e não apresentar como entregue o que estava apenas em
+atribuição: não publicar capturas sem autorização escrita da MetaMundi, não incluir nomes internos de serviços, tabelas,
+endpoints, ambientes nem diagramas da topologia da empresa, não citar métricas de negócio e não apresentar como entregue o que estava apenas em
 develop ou em branch. O teste `e2e/crmundi.spec.ts` falha se a página ganhar imagens raster ou links para
 domínios e ambientes da empresa.
 
