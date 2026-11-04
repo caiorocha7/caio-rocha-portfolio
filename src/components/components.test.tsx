@@ -39,7 +39,8 @@ describe('ProjectCard', () => {
     render(<ProjectCard project={project} locale="pt" dict={dict} index={1} />);
 
     expect(screen.getByRole('heading', { name: 'DocPilot AI' })).toBeInTheDocument();
-    expect(screen.getByText('182 testes')).toBeInTheDocument();
+    expect(screen.getByText('Projeto pessoal')).toBeInTheDocument();
+    expect(screen.queryByText('182 testes')).not.toBeInTheDocument();
     const img = screen.getByAltText(project.screenshots[0].alt.pt);
     // o prefixo depende de NEXT_PUBLIC_BASE_PATH (vazio localmente, /caio-rocha-portfolio no CI)
     expect(img).toHaveAttribute(

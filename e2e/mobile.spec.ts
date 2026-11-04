@@ -1,7 +1,12 @@
 import { expect, test } from '@playwright/test';
 
 test('mobile: sem rolagem horizontal e menu acessível', async ({ page }) => {
-  for (const path of ['pt/', 'en/projects/routeops/', 'pt/projects/connecthub/']) {
+  for (const path of [
+    'pt/',
+    'en/projects/routeops/',
+    'pt/projects/connecthub/',
+    'pt/experience/crmundi/',
+  ]) {
     await page.goto(path);
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth,

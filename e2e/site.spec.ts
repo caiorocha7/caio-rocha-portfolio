@@ -68,15 +68,21 @@ test.describe('home', () => {
       await expect(page.locator(`a[href="${p.repo}"]`).first()).toBeAttached();
   });
 
-  test('download de currículo está desativado (enviado sob medida por vaga)', async ({
-    page,
-    request,
-  }) => {
-    for (const locale of ['pt', 'en']) {
+  test('currículo PDF atual pode ser baixado em pt e en', async ({ page, request }) => {
+    for (const [locale, label] of [
+      ['pt', 'Currículo (PDF)'],
+      ['en', 'Résumé (PDF, Portuguese)'],
+    ]) {
       await page.goto(`${locale}/`);
-      await expect(page.getByRole('link', { name: /Currículo|Résumé/ })).toHaveCount(0);
-      await expect(page.locator('a[href*="/resume/"]')).toHaveCount(0);
+      const link = page.getByRole('link', { name: label });
+      await expect(link).toHaveAttribute('download', '');
+      await expect(link).toHaveAttribute('href', `${BASE}/resume/Caio_Rocha_CV.pdf`);
     }
+    const res = await request.get(`${BASE}/resume/Caio_Rocha_CV.pdf`);
+    expect(res.status()).toBe(200);
+    expect(res.headers()['content-type']).toContain('application/pdf');
+    expect((await res.body()).subarray(0, 4).toString()).toBe('%PDF');
+    // versão antiga não é mais publicada
     expect((await request.get(`${BASE}/resume/Caio_Rocha_Curriculo_2026.pdf`)).status()).toBe(404);
   });
 
@@ -166,7 +172,8 @@ test('SEO: metadata, Open Graph, sitemap e robots', async ({ page, request }) =>
   await expect(page.locator('link[rel="alternate"][hreflang="pt-BR"]')).toBeAttached();
 
   const sitemap = await (await request.get(`${BASE}/sitemap.xml`)).text();
-  expect(sitemap.match(/<loc>/g)).toHaveLength(8);
+  expect(sitemap.match(/<loc>/g)).toHaveLength(10);
+  expect(sitemap).toContain('/en/experience/crmundi/');
   expect(sitemap).toContain('/pt/projects/connecthub/');
   const robots = await (await request.get(`${BASE}/robots.txt`)).text();
   expect(robots).toContain('Sitemap: https://');
