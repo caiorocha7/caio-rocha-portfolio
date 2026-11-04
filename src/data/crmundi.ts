@@ -78,12 +78,12 @@ export const crmundi = {
   executive: {
     pt: [
       'O CRMundi é uma plataforma SaaS multi-tenant de gestão comercial, financeira e de atendimento para agências de viagem. O ChatMundi é a camada de atendimento WhatsApp, baseada em um fork do Chatwoot, que passou a funcionar também dentro do CRM.',
-      'Entrei em julho de 2025, quando o produto já existia, e acompanhei 16 meses da sua evolução. Comecei com integrações pontuais e assumi, ao longo do tempo, módulos completos de ponta a ponta, integrações entre sistemas, mudanças transversais com rollout controlado e IA aplicada.',
+      'Entrei em julho de 2025, quando o produto já existia, e participei da sua evolução até novembro de 2026. Comecei com integrações pontuais e assumi, ao longo do tempo, módulos completos de ponta a ponta, integrações entre sistemas, mudanças transversais com rollout controlado e IA aplicada.',
       'Trabalhei com backend Python/FastAPI, frontend Angular, MySQL, integrações externas e serviços AWS, sempre dentro de um time e sobre uma arquitetura que eu não criei, mas que estendi e endureci em praticamente todos os domínios principais.',
     ],
     en: [
       'CRMundi is a multi-tenant SaaS platform for travel agencies covering sales, finance and customer service. ChatMundi is the WhatsApp customer-service layer, based on a Chatwoot fork, which also became available inside the CRM.',
-      'I joined in July 2025, when the product already existed, and followed 16 months of its evolution. I started with targeted integrations and, over time, took on complete end-to-end modules, cross-system integrations, cross-cutting changes with controlled rollouts and applied AI.',
+      'I joined in July 2025, when the product already existed, and took part in its evolution until November 2026. I started with targeted integrations and, over time, took on complete end-to-end modules, cross-system integrations, cross-cutting changes with controlled rollouts and applied AI.',
       'I worked with a Python/FastAPI backend, an Angular frontend, MySQL, external integrations and AWS services, always as part of a team and on an architecture I did not create but extended and hardened across nearly every core domain.',
     ],
   } satisfies Localized<string[]>,

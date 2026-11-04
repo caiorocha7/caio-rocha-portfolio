@@ -2,8 +2,9 @@
 
 [![CI e deploy](https://github.com/caiorocha7/caio-rocha-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/caiorocha7/caio-rocha-portfolio/actions/workflows/ci.yml)
 
-Site de portfólio de **Caio Rocha**, Engenheiro de Software (Backend · Full Stack · IA aplicada).
-Apresenta três projetos completos com estudos de caso, capturas reais, testes e limitações documentadas.
+Site de portfólio de **Caio Rocha**, Engenheiro de Software (Full Stack | Backend | Integrações | IA Aplicada).
+Apresenta a experiência profissional e três projetos completos com estudos de caso, capturas reais, testes e
+limitações documentadas. O site não oferece currículo para download.
 
 **Site:** https://caiorocha7.github.io/caio-rocha-portfolio/
 
@@ -77,7 +78,7 @@ $env:NEXT_PUBLIC_BASE_PATH='/caio-rocha-portfolio'; pnpm build; pnpm start
 
 ## Manutenção e deploy
 
-Como atualizar textos, projetos e capturas, reativar o currículo e como publicar em outro host:
+Como atualizar textos, projetos e capturas e como publicar em outro host:
 [docs/MAINTENANCE.md](docs/MAINTENANCE.md).
 
 ## Licença

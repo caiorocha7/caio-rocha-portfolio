@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ExternalLink } from '@/components/ExternalLink';
 import { ExperienceCard } from '@/components/ExperienceCard';
-import { ArrowIcon, DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from '@/components/icons';
+import { ArrowIcon, GitHubIcon, LinkedInIcon, MailIcon } from '@/components/icons';
 import { ProjectCard } from '@/components/ProjectCard';
 import { Container, Section, buttonStyles } from '@/components/ui';
 import { getDictionary } from '@/data/dictionary';
@@ -11,7 +11,6 @@ import { profile } from '@/data/profile';
 import { projects } from '@/data/projects';
 import { stack } from '@/data/stack';
 import { isLocale, localePath } from '@/lib/i18n';
-import { asset } from '@/lib/site';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -73,12 +72,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <LinkedInIcon width={16} height={16} />
                 LinkedIn
               </ExternalLink>
-              {profile.resume && (
-                <a href={asset(profile.resume)} download className={buttonStyles.secondary}>
-                  <DownloadIcon width={16} height={16} />
-                  {dict.hero.resume}
-                </a>
-              )}
             </div>
           </div>
           <aside aria-label={dict.hero.summary} className="hidden lg:block">

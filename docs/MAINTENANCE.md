@@ -4,7 +4,7 @@
 
 | O que mudar                                                               | Arquivo                  |
 | ------------------------------------------------------------------------- | ------------------------ |
-| Nome, título, introdução, sobre, formação, links, currículo               | `src/data/profile.ts`    |
+| Nome, título, introdução, sobre, formação, links                          | `src/data/profile.ts`    |
 | Experiência profissional                                                  | `src/data/experience.ts` |
 | Experiência MetaMundi, estudo de caso CRMundi (domínios, status, limites) | `src/data/crmundi.ts`    |
 | Projetos (resumo, arquitetura, decisões, testes, limitações, capturas)    | `src/data/projects.ts`   |
@@ -34,9 +34,9 @@ rode `node scripts/capture-screenshots.mjs`.
 
 ## Currículo
 
-O site **não** oferece currículo para download, por decisão do autor (ele envia uma versão específica para
-cada vaga). `profile.resume` fica `null` e não há arquivos em `public/resume/`. O teste E2E garante que nenhum link
-de currículo apareça e que os PDFs antigos respondam 404.
+O site **não** oferece currículo para download, por decisão do autor: o currículo é um documento local,
+enviado diretamente nas candidaturas. Não há campo de currículo no perfil nem arquivos em `public/resume/`.
+O teste de conteúdo e o teste E2E garantem que nenhum link de currículo apareça e que os PDFs antigos respondam 404.
 
 ## Estudo de caso CRMundi
 

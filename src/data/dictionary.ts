@@ -4,7 +4,7 @@ const pt = {
   meta: {
     title: 'Caio Rocha | Engenheiro de Software',
     description:
-      'Portfólio de Caio Rocha, Engenheiro de Software com foco em backend, full stack, integrações e IA aplicada. Experiência em SaaS multi-tenant e projetos com NestJS, React, FastAPI, Angular, Next.js e RAG.',
+      'Portfólio de Caio Rocha, Engenheiro de Software full stack: interfaces, APIs, microsserviços, integrações, automações e IA aplicada, com experiência na evolução de sistemas SaaS em produção.',
   },
   nav: {
     skip: 'Pular para o conteúdo',
@@ -24,7 +24,6 @@ const pt = {
     eyebrow: 'Disponível para oportunidades remotas',
     projects: 'Ver projetos',
     experience: 'Ver experiência',
-    resume: 'Currículo (PDF)',
     summary: 'Resumo',
     based: 'Base',
     education: 'Formação',
@@ -130,7 +129,7 @@ const en: Dictionary = {
   meta: {
     title: 'Caio Rocha | Software Engineer',
     description:
-      'Portfolio of Caio Rocha, a Software Engineer focused on backend, full stack, integrations and applied AI. Experience with multi-tenant SaaS and projects built with NestJS, React, FastAPI, Angular, Next.js and RAG.',
+      'Portfolio of Caio Rocha, a full stack Software Engineer: interfaces, APIs, microservices, integrations, automation and applied AI, with experience evolving SaaS systems in production.',
   },
   nav: {
     skip: 'Skip to content',
@@ -150,7 +149,6 @@ const en: Dictionary = {
     eyebrow: 'Open to remote opportunities',
     projects: 'View projects',
     experience: 'View experience',
-    resume: 'Résumé (PDF, Portuguese)',
     summary: 'At a glance',
     based: 'Based in',
     education: 'Education',

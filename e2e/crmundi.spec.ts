@@ -186,6 +186,24 @@ test('nenhuma topologia, ambiente, repositório privado ou captura corporativa �
   await expect(page.locator('main img')).toHaveCount(0);
 });
 
+for (const [locale, role, focus] of [
+  ['pt', 'Engenheiro de Software', 'Full Stack | Backend | Integrações | IA Aplicada'],
+  ['en', 'Software Engineer', 'Full Stack | Backend | Integrations | Applied AI'],
+] as const) {
+  test(`hero com posicionamento amplo e sem contagem de meses em ${locale}`, async ({ page }) => {
+    await page.goto(`${locale}/`);
+    const hero = page.locator('main > section').first();
+    await expect(hero.getByText(role, { exact: true })).toBeVisible();
+    await expect(hero.getByText(focus, { exact: true })).toBeVisible();
+    for (const path of [`${locale}/`, `${locale}/experience/`, `${locale}/experience/crmundi/`]) {
+      await page.goto(path);
+      await expect(page.locator('main'), path).not.toContainText(
+        /\d+\s*(meses|months)|1 ano e 4|months of experience/i,
+      );
+    }
+  });
+}
+
 test('troca de idioma mantém as páginas de experiência', async ({ page }) => {
   await page.goto('pt/experience/');
   await page.getByRole('link', { name: 'Ver em inglês' }).click();

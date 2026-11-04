@@ -83,8 +83,16 @@ describe('projetos', () => {
       }
     }
   });
+});
 
-  it('o currículo só é exibido se o PDF existir', () => {
-    if (profile.resume) expect(existsSync(resolve(PUBLIC, `.${profile.resume}`))).toBe(true);
+describe('perfil', () => {
+  it('o site não referencia currículo', () => {
+    expect(Object.keys(profile)).not.toContain('resume');
+    expect(existsSync(resolve(PUBLIC, 'resume'))).toBe(false);
+  });
+
+  it('o posicionamento não traz contagem de meses de experiência', () => {
+    const text = JSON.stringify({ profile, experience, dictionaries });
+    expect(text).not.toMatch(/\d+\s*(meses|months)|1 ano e 4/i);
   });
 });
