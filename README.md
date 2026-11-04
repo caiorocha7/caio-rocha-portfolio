@@ -11,7 +11,13 @@ Apresenta três projetos completos com estudos de caso, capturas reais, testes e
 | ------------------------------------------- | ----------------------------------------------------------------- |
 | ![Home](docs/screenshots/home-pt-light.png) | ![Home em inglês, tema escuro](docs/screenshots/home-en-dark.png) |
 
-## Projetos apresentados
+## Experiência profissional em destaque
+
+**CRMundi & ChatMundi (MetaMundi, 2025 a 2026):** estudo de caso em `/pt/experience/crmundi/` e
+`/en/experience/crmundi/`. O produto é proprietário: a página descreve apenas a contribuição do autor, usa
+diagramas conceituais originais e não publica capturas, código, nomes internos nem links de ambientes.
+
+## Projetos pessoais apresentados
 
 | Projeto     | Foco                                                      | Repositório                                                                      |
 | ----------- | --------------------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -34,7 +40,7 @@ Sem backend: todo o conteúdo é estático e o contato é feito por e-mail e Lin
 ```
 src/
 ├── app/
-│   ├── [locale]/              # layout raiz por idioma, home e páginas de projeto
+│   ├── [locale]/              # layout raiz por idioma, home, páginas de projeto e experience/crmundi
 │   ├── global-not-found.tsx   # 404 bilíngue
 │   ├── sitemap.ts · robots.ts
 ├── components/                # Header, cards, links externos seguros, tema, idioma

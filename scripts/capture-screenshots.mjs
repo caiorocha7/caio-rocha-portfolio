@@ -25,6 +25,31 @@ const shots = [
     scheme: 'light',
     full: true,
   },
+  {
+    name: 'home-featured',
+    path: '/pt/#featured',
+    viewport: { width: 1440, height: 1200 },
+    scheme: 'light',
+  },
+  {
+    name: 'crmundi-pt',
+    path: '/pt/experience/crmundi/',
+    viewport: { width: 1440, height: 900 },
+    scheme: 'light',
+    full: true,
+  },
+  {
+    name: 'crmundi-en-dark',
+    path: '/en/experience/crmundi/#architecture',
+    viewport: { width: 1440, height: 1000 },
+    scheme: 'dark',
+  },
+  {
+    name: 'mobile-crmundi',
+    path: '/pt/experience/crmundi/',
+    viewport: { width: 390, height: 844 },
+    scheme: 'light',
+  },
   { name: 'mobile-home', path: '/pt/', viewport: { width: 390, height: 844 }, scheme: 'light' },
   {
     name: 'mobile-project-dark',

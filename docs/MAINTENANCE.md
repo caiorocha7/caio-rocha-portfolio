@@ -2,13 +2,15 @@
 
 ## Onde fica cada conteúdo
 
-| O que mudar                                                            | Arquivo                  |
-| ---------------------------------------------------------------------- | ------------------------ |
-| Nome, título, introdução, sobre, formação, links, currículo            | `src/data/profile.ts`    |
-| Experiência profissional                                               | `src/data/experience.ts` |
-| Projetos (resumo, arquitetura, decisões, testes, limitações, capturas) | `src/data/projects.ts`   |
-| Stack por categoria                                                    | `src/data/stack.ts`      |
-| Textos da interface (menus, botões, títulos, SEO)                      | `src/data/dictionary.ts` |
+| O que mudar                                                            | Arquivo                            |
+| ---------------------------------------------------------------------- | ---------------------------------- |
+| Nome, título, introdução, sobre, formação, links, currículo            | `src/data/profile.ts`              |
+| Experiência profissional                                               | `src/data/experience.ts`           |
+| Estudo de caso CRMundi & ChatMundi (textos, fluxos, limites)           | `src/data/crmundi.ts`              |
+| Diagrama conceitual do CRMundi                                         | `src/components/SystemDiagram.tsx` |
+| Projetos (resumo, arquitetura, decisões, testes, limitações, capturas) | `src/data/projects.ts`             |
+| Stack por categoria                                                    | `src/data/stack.ts`                |
+| Textos da interface (menus, botões, títulos, SEO)                      | `src/data/dictionary.ts`           |
 
 Todo texto é um objeto `{ pt, en }`. O teste `src/test/content.test.ts` falha se algum idioma ficar vazio,
 se as chaves dos dicionários divergirem, se uma captura referenciada não existir ou se o total de testes
@@ -33,11 +35,18 @@ rode `node scripts/capture-screenshots.mjs`.
 
 ## Currículo
 
-O download de currículo está **desativado** (`resume: null` em `src/data/profile.ts`): o autor envia uma
-versão específica para cada vaga. Para reativar, coloque o PDF em `public/resume/` e defina
-`resume: '/resume/<arquivo>.pdf'`. O botão aparece automaticamente no topo da página e o teste de conteúdo
-confere se o arquivo existe. Lembre-se de ajustar o teste E2E de currículo. Atenção: um PDF publicado fica
-acessível a qualquer pessoa, inclusive telefone e outros dados de contato.
+O PDF publicado fica em `public/resume/Caio_Rocha_CV.pdf` e é referenciado em `profile.resume`. Ele é
+exportado do arquivo Word editável do autor (mantido fora do repositório). Para atualizar, substitua o PDF
+mantendo o nome; para ocultar o botão, defina `resume: null` e ajuste o teste E2E de currículo.
+Atenção: o PDF publicado fica acessível a qualquer pessoa, inclusive telefone e outros dados de contato.
+
+## Estudo de caso CRMundi
+
+Antes de alterar `src/data/crmundi.ts`, confira as evidências da auditoria e respeite os limites de
+atribuição: não publicar capturas sem autorização escrita da MetaMundi, não incluir nomes internos de tabelas,
+endpoints ou ambientes, não citar métricas de negócio e não apresentar como entregue o que estava apenas em
+develop ou em branch. O teste `e2e/crmundi.spec.ts` falha se a página ganhar imagens raster ou links para
+domínios e ambientes da empresa.
 
 ## Deploy
 
