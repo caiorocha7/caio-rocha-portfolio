@@ -44,7 +44,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {profile.role[locale]}
             </p>
             <p className="mt-1 font-mono text-sm text-accent-700 sm:text-base dark:text-accent-400">
-              {profile.focus}
+              {profile.focus[locale]}
             </p>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
               {profile.intro[locale]}

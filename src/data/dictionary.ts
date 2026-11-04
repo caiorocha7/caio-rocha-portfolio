@@ -64,6 +64,7 @@ const pt = {
   caseStudy: {
     back: 'Experiência profissional',
     executive: 'Resumo executivo',
+    scope: 'Escopo verificado',
     evolution: 'Meu papel e evolução no produto',
     domains: 'Principais áreas de contribuição',
     domainsLead:
@@ -189,6 +190,7 @@ const en: Dictionary = {
   caseStudy: {
     back: 'Professional experience',
     executive: 'Executive summary',
+    scope: 'Verified scope',
     evolution: 'My role and growth in the product',
     domains: 'Main contribution areas',
     domainsLead:

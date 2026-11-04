@@ -117,6 +117,15 @@ for (const [locale, headings] of [
     for (const h of headings) {
       await expect(page.getByRole('heading', { level: 2, name: h })).toBeVisible();
     }
+    // escopo verificado: contagens de escopo, nunca de commits
+    await expect(
+      page.getByRole('heading', {
+        level: 3,
+        name: locale === 'pt' ? 'Escopo verificado' : 'Verified scope',
+      }),
+    ).toBeVisible();
+    await expect(page.getByText('4.5.2 → 4.14.1')).toBeVisible();
+    await expect(page.locator('main')).not.toContainText(/commits? (feitos|authored)|\d+ commits/i);
     // 8 domínios expansíveis, fechados por padrão
     const domains = page.locator('details[id^="domain-"]');
     await expect(domains).toHaveCount(8);

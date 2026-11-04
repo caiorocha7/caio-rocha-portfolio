@@ -109,6 +109,28 @@ export default async function CrmundiPage({ params }: { params: Params }) {
         <div className="mt-10">
           <PageSection id="executive" title={t.executive}>
             <Paragraphs items={c.executive[locale]} />
+            <h3 className="mt-8 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+              {t.scope}
+            </h3>
+            <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {c.scope.map((s) => (
+                <div
+                  key={s.label.en}
+                  className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800"
+                >
+                  <dt className="sr-only">{s.label[locale]}</dt>
+                  <dd>
+                    <span className="block font-mono text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                      {s.value}
+                    </span>
+                    <span className="mt-1 block text-sm text-zinc-600 dark:text-zinc-400">
+                      {s.label[locale]}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-3 text-xs text-zinc-500">{c.scopeNote[locale]}</p>
           </PageSection>
 
           <PageSection id="evolution" title={t.evolution}>

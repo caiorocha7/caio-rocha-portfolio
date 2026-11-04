@@ -88,6 +88,61 @@ export const crmundi = {
     ],
   } satisfies Localized<string[]>,
 
+  /**
+   * Escopo verificado no histórico Git e nos manifestos (contagens de escopo, não métricas de negócio).
+   * RBAC: cadastros, dashboard, relatórios, uploads, faturas, itens de venda, notificações, pessoas,
+   * pós-venda, produtos e referências. Integrações: Chatwoot, Evolution API, n8n, e-mail, AWS S3/Lambda e LLM.
+   */
+  scope: [
+    {
+      value: '8',
+      label: {
+        pt: 'domínios do produto com contribuições',
+        en: 'product domains I contributed to',
+      },
+    },
+    {
+      value: '2',
+      label: {
+        pt: 'serviços criados (conversas e geração de PDF)',
+        en: 'services created (conversations and PDF generation)',
+      },
+    },
+    {
+      value: '11',
+      label: {
+        pt: 'módulos migrados para o RBAC central, em 2 aplicações',
+        en: 'modules migrated to central RBAC, across 2 applications',
+      },
+    },
+    {
+      value: '6',
+      label: {
+        pt: 'integrações externas com código meu',
+        en: 'external integrations with my code',
+      },
+    },
+    {
+      value: '4.5.2 → 4.14.1',
+      label: {
+        pt: 'fork Chatwoot atualizado em 5 merges incrementais',
+        en: 'Chatwoot fork upgraded in 5 incremental merges',
+      },
+    },
+    {
+      value: 'polling → WebSocket',
+      label: {
+        pt: 'tempo real do atendimento, autenticado por tenant',
+        en: 'customer-service real time, tenant-authenticated',
+      },
+    },
+  ] satisfies { value: string; label: Localized }[],
+
+  scopeNote: {
+    pt: 'Contagens de escopo verificadas no histórico Git, não indicadores de negócio. Integrações: Chatwoot, Evolution API, n8n, envio de e-mail, AWS S3/Lambda e provedor de LLM.',
+    en: 'Scope counts verified in the Git history, not business indicators. Integrations: Chatwoot, Evolution API, n8n, email delivery, AWS S3/Lambda and an LLM provider.',
+  } satisfies Localized,
+
   /** Evolução do papel, a partir da linha do tempo de commits. */
   evolution: [
     {
