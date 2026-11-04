@@ -34,10 +34,9 @@ rode `node scripts/capture-screenshots.mjs`.
 
 ## Currículo
 
-O PDF publicado fica em `public/resume/Caio_Rocha_CV.pdf` e é referenciado em `profile.resume`. Ele é
-exportado do arquivo Word editável do autor (mantido fora do repositório). Para atualizar, substitua o PDF
-mantendo o nome; para ocultar o botão, defina `resume: null` e ajuste o teste E2E de currículo.
-Atenção: o PDF publicado fica acessível a qualquer pessoa, inclusive telefone e outros dados de contato.
+O site **não** oferece currículo para download, por decisão do autor (ele envia uma versão específica para
+cada vaga). `profile.resume` fica `null` e não há arquivos em `public/resume/`. O teste E2E garante que nenhum link
+de currículo apareça e que os PDFs antigos respondam 404.
 
 ## Estudo de caso CRMundi
 

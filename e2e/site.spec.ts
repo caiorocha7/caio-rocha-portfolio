@@ -68,22 +68,17 @@ test.describe('home', () => {
       await expect(page.locator(`a[href="${p.repo}"]`).first()).toBeAttached();
   });
 
-  test('currículo PDF atual pode ser baixado em pt e en', async ({ page, request }) => {
-    for (const [locale, label] of [
-      ['pt', 'Currículo (PDF)'],
-      ['en', 'Résumé (PDF, Portuguese)'],
-    ]) {
-      await page.goto(`${locale}/`);
-      const link = page.getByRole('link', { name: label });
-      await expect(link).toHaveAttribute('download', '');
-      await expect(link).toHaveAttribute('href', `${BASE}/resume/Caio_Rocha_CV.pdf`);
+  test('o site não oferece currículo para download', async ({ page, request }) => {
+    for (const locale of ['pt', 'en']) {
+      for (const path of [`${locale}/`, `${locale}/experience/`]) {
+        await page.goto(path);
+        await expect(page.getByRole('link', { name: /Currículo|Résumé/ })).toHaveCount(0);
+        await expect(page.locator('a[href*="/resume/"]')).toHaveCount(0);
+      }
     }
-    const res = await request.get(`${BASE}/resume/Caio_Rocha_CV.pdf`);
-    expect(res.status()).toBe(200);
-    expect(res.headers()['content-type']).toContain('application/pdf');
-    expect((await res.body()).subarray(0, 4).toString()).toBe('%PDF');
-    // versão antiga não é mais publicada
-    expect((await request.get(`${BASE}/resume/Caio_Rocha_Curriculo_2026.pdf`)).status()).toBe(404);
+    for (const file of ['Caio_Rocha_CV.pdf', 'Caio_Rocha_Curriculo_2026.pdf']) {
+      expect((await request.get(`${BASE}/resume/${file}`)).status(), file).toBe(404);
+    }
   });
 
   test('todos os links internos respondem 200', async ({ page, request }) => {

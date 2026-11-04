@@ -9,8 +9,8 @@ export const profile = {
   email: 'caiovinicios82@gmail.com',
   github: 'https://github.com/caiorocha7',
   linkedin: 'https://linkedin.com/in/caioroch',
-  // Currículo atual (PDF gerado a partir do .docx editável do autor). Use null para ocultar o botão.
-  resume: '/resume/Caio_Rocha_CV.pdf' as string | null,
+  // Sem currículo no site: o autor envia uma versão específica para cada vaga.
+  resume: null as string | null,
   intro: {
     pt: 'Desenvolvo sistemas backend e full stack para produtos SaaS: APIs, integrações, processamento assíncrono e aplicações com IA. Trabalho com Python/FastAPI, TypeScript, Angular, React e NestJS, com atenção a concorrência, segurança e testes automatizados.',
     en: 'I build backend and full stack systems for SaaS products: APIs, integrations, asynchronous processing and AI-powered applications. I work with Python/FastAPI, TypeScript, Angular, React and NestJS, with a focus on concurrency, security and automated testing.',
