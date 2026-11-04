@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import type { ReactNode } from 'react';
-import { FlowSteps } from '@/components/FlowSteps';
 import { ArrowIcon, ArrowLeftIcon } from '@/components/icons';
-import { SystemDiagram } from '@/components/SystemDiagram';
+import { BlockCards, Bullets, PageSection, Paragraphs } from '@/components/PageSection';
+import { StatusBadge } from '@/components/StatusBadge';
 import { Container, TagList, buttonStyles } from '@/components/ui';
-import { crmundi, type Block as BlockItem } from '@/data/crmundi';
+import { crmundi, type ContributionStatus } from '@/data/crmundi';
 import { getDictionary } from '@/data/dictionary';
 import { isLocale, localePath, locales, ogLocale } from '@/lib/i18n';
 import { absoluteUrl } from '@/lib/site';
@@ -23,7 +22,7 @@ const PATH = 'experience/crmundi';
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const title = `${crmundi.title}: ${crmundi.identification[locale]}`;
+  const title = `${crmundi.title}: ${crmundi.subtitle[locale]}`;
   return {
     title,
     description: crmundi.summary[locale],
@@ -45,73 +44,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
-  return (
-    <section
-      id={id}
-      aria-labelledby={`${id}-title`}
-      className="scroll-mt-24 border-t border-zinc-200 py-12 dark:border-zinc-800"
-    >
-      <div className="grid gap-6 md:grid-cols-[220px_1fr]">
-        <h2
-          id={`${id}-title`}
-          className="font-mono text-xs tracking-widest text-accent-700 uppercase dark:text-accent-400"
-        >
-          {title}
-        </h2>
-        <div className="min-w-0">{children}</div>
-      </div>
-    </section>
-  );
-}
-
-function Paragraphs({ items }: { items: string[] }) {
-  return (
-    <div className="space-y-4 leading-relaxed text-zinc-700 dark:text-zinc-300">
-      {items.map((p) => (
-        <p key={p}>{p}</p>
-      ))}
-    </div>
-  );
-}
-
-function Bullets({ items }: { items: string[] }) {
-  return (
-    <ul className="space-y-2.5 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-      {items.map((i) => (
-        <li key={i} className="flex gap-2.5">
-          <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-accent-600" />
-          {i}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function Cards({
-  items,
-  locale,
-  columns = 2,
-}: {
-  items: BlockItem[];
-  locale: 'pt' | 'en';
-  columns?: 2 | 3;
-}) {
-  return (
-    <ul
-      className={`grid gap-3 ${columns === 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2'}`}
-    >
-      {items.map((b) => (
-        <li key={b.title.en} className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800">
-          <p className="font-medium text-zinc-900 dark:text-zinc-100">{b.title[locale]}</p>
-          <p className="mt-1.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {b.body[locale]}
-          </p>
-        </li>
-      ))}
-    </ul>
-  );
-}
+const STATUS_ORDER: ContributionStatus[] = ['integrated', 'collaboration', 'develop', 'branch'];
 
 export default async function CrmundiPage({ params }: { params: Params }) {
   const { locale } = await params;
@@ -121,27 +54,20 @@ export default async function CrmundiPage({ params }: { params: Params }) {
   const c = crmundi;
 
   const toc = [
-    ['overview', t.overview],
-    ['problem', t.problem],
-    ['role', t.role],
-    ['modules', t.modules],
-    ['chatmundi', t.chatmundi],
-    ['microservice', t.microservice],
-    ['ownership', t.ownership],
-    ['gerente', t.gerente],
-    ['finance', t.finance],
-    ['architecture', t.architecture],
-    ['security', t.security],
-    ['challenges', t.challenges],
+    ['executive', t.executive],
+    ['evolution', t.evolution],
+    ['domains', t.domains],
+    ['problems', t.problems],
+    ['decisions', t.decisions],
     ['tech', t.tech],
-    ['evidence', t.evidence],
+    ['impact', t.impact],
     ['attribution', t.attribution],
   ] as const;
 
   return (
     <article className="reveal">
       <Container className="pt-10 pb-16 sm:pt-14">
-        <Link href={`${localePath(locale)}#featured`} className={buttonStyles.link}>
+        <Link href={localePath(locale, 'experience')} className={buttonStyles.link}>
           <ArrowLeftIcon width={16} height={16} />
           {t.back}
         </Link>
@@ -162,8 +88,8 @@ export default async function CrmundiPage({ params }: { params: Params }) {
           </p>
         </header>
 
-        <nav aria-label={t.overview} className="mt-10">
-          <ol className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+        <nav aria-label={t.executive} className="mt-10">
+          <ol className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
             {toc.map(([id, label], i) => (
               <li key={id}>
                 <a
@@ -181,100 +107,125 @@ export default async function CrmundiPage({ params }: { params: Params }) {
         </nav>
 
         <div className="mt-10">
-          <Section id="overview" title={t.overview}>
-            <Paragraphs items={c.overview[locale]} />
-          </Section>
+          <PageSection id="executive" title={t.executive}>
+            <Paragraphs items={c.executive[locale]} />
+          </PageSection>
 
-          <Section id="problem" title={t.problem}>
-            <Paragraphs items={c.businessProblem[locale]} />
-          </Section>
+          <PageSection id="evolution" title={t.evolution}>
+            <ol className="relative space-y-5 border-l border-zinc-200 pl-6 dark:border-zinc-800">
+              {c.evolution.map((step) => (
+                <li key={step.title.en} className="relative">
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-1.5 -left-[29px] size-2.5 rounded-full border-2 border-white bg-accent-600 dark:border-zinc-950"
+                  />
+                  <p className="font-mono text-xs text-zinc-500">{step.title[locale]}</p>
+                  <p className="mt-0.5 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                    {step.body[locale]}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </PageSection>
 
-          <Section id="role" title={t.role}>
-            <Bullets items={c.role[locale]} />
-          </Section>
-
-          <Section id="modules" title={t.modules}>
-            <Cards items={c.modules} locale={locale} columns={3} />
-          </Section>
-
-          <Section id="chatmundi" title={t.chatmundi}>
-            <Cards items={c.chatmundi} locale={locale} />
-          </Section>
-
-          <Section id="microservice" title={t.microservice}>
-            <p className="mb-4 leading-relaxed text-zinc-700 dark:text-zinc-300">
-              {c.microservice.intro[locale]}
-            </p>
-            <Bullets items={c.microservice.points[locale]} />
-          </Section>
-
-          <Section id="ownership" title={t.ownership}>
-            <p className="mb-5 leading-relaxed text-zinc-700 dark:text-zinc-300">
-              {c.ownership.intro[locale]}
-            </p>
-            <FlowSteps steps={c.ownership.steps} locale={locale} label={t.ownershipFlow} />
-            <div className="mt-6">
-              <Bullets items={c.ownership.points[locale]} />
+          <PageSection id="domains" title={t.domains}>
+            <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400">{t.domainsLead}</p>
+            <ul aria-label={t.statusLegend} className="mb-5 flex flex-wrap gap-2">
+              {STATUS_ORDER.map((s) => (
+                <li key={s}>
+                  <StatusBadge status={s} label={t.status[s]} />
+                </li>
+              ))}
+            </ul>
+            <div className="space-y-3">
+              {c.domains.map((domain) => (
+                <details
+                  key={domain.id}
+                  id={`domain-${domain.id}`}
+                  className="group scroll-mt-24 rounded-xl border border-zinc-200 open:bg-zinc-50/60 dark:border-zinc-800 dark:open:bg-zinc-900/40"
+                >
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 rounded-xl p-5 [&::-webkit-details-marker]:hidden">
+                    <span>
+                      <span className="block font-semibold text-zinc-900 dark:text-zinc-50">
+                        {domain.title[locale]}
+                      </span>
+                      <span className="mt-1 block text-sm text-zinc-600 dark:text-zinc-400">
+                        {domain.problem[locale]}
+                      </span>
+                    </span>
+                    <span className="flex shrink-0 items-center gap-3 text-xs text-zinc-500">
+                      <span className="hidden sm:inline">
+                        {domain.items.length} {t.contributions}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="font-mono text-base text-zinc-400 transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </span>
+                  </summary>
+                  <ul className="grid gap-3 px-5 pb-5 sm:grid-cols-2">
+                    {domain.items.map((item) => (
+                      <li
+                        key={item.title.en}
+                        className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950"
+                      >
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <p className="font-medium text-zinc-900 dark:text-zinc-100">
+                            {item.title[locale]}
+                          </p>
+                          <StatusBadge status={item.status} label={t.status[item.status]} />
+                        </div>
+                        <p className="mt-1.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                          {item.body[locale]}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ))}
             </div>
-          </Section>
+          </PageSection>
 
-          <Section id="gerente" title={t.gerente}>
-            <p className="mb-5 leading-relaxed text-zinc-700 dark:text-zinc-300">
-              {c.gerente.intro[locale]}
-            </p>
-            <FlowSteps steps={c.gerente.steps} locale={locale} label={t.gerenteFlow} />
-            <div className="mt-6">
-              <Bullets items={c.gerente.points[locale]} />
-            </div>
-            <p className="mt-4 text-sm text-zinc-500">{c.gerente.scope[locale]}</p>
-          </Section>
+          <PageSection id="problems" title={t.problems}>
+            <BlockCards items={c.problems} locale={locale} />
+          </PageSection>
 
-          <Section id="finance" title={t.finance}>
-            <Cards items={c.finance} locale={locale} />
-          </Section>
+          <PageSection id="decisions" title={t.decisions}>
+            <BlockCards items={c.decisions} locale={locale} columns={3} />
+          </PageSection>
 
-          <Section id="architecture" title={t.architecture}>
-            <SystemDiagram locale={locale} title={dict.featured.diagram} />
-            <p className="mt-3 text-sm text-zinc-500">{c.architecture[locale]}</p>
-          </Section>
-
-          <Section id="security" title={t.security}>
-            <Bullets items={c.security[locale]} />
-          </Section>
-
-          <Section id="challenges" title={t.challenges}>
-            <Cards items={c.challenges} locale={locale} />
-          </Section>
-
-          <Section id="tech" title={t.tech}>
+          <PageSection id="tech" title={t.tech}>
             <dl className="grid gap-5 sm:grid-cols-2">
-              {(Object.keys(c.tech) as (keyof typeof c.tech)[]).map((group) => (
+              {(Object.keys(c.techGroups) as (keyof typeof c.techGroups)[]).map((group) => (
                 <div key={group}>
                   <dt className="mb-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                     {t.techGroups[group]}
                   </dt>
                   <dd>
-                    <TagList items={c.tech[group]} label={t.techGroups[group]} />
+                    <TagList items={c.techGroups[group]} label={t.techGroups[group]} />
                   </dd>
                 </div>
               ))}
             </dl>
-          </Section>
+          </PageSection>
 
-          <Section id="evidence" title={t.evidence}>
-            <p className="leading-relaxed text-zinc-700 dark:text-zinc-300">{c.evidence[locale]}</p>
-          </Section>
+          <PageSection id="impact" title={t.impact}>
+            <Bullets items={c.impact[locale]} />
+            <p className="mt-4 text-sm text-zinc-500">{c.impactNote[locale]}</p>
+          </PageSection>
 
-          <Section id="attribution" title={t.attribution}>
+          <PageSection id="attribution" title={t.attribution}>
             <Bullets items={c.attribution[locale]} />
-          </Section>
+          </PageSection>
         </div>
 
         <nav
           aria-label={t.personalProjects}
           className="mt-4 flex flex-col gap-4 border-t border-zinc-200 pt-10 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800"
         >
-          <Link href={`${localePath(locale)}#featured`} className={buttonStyles.link}>
+          <Link href={localePath(locale, 'experience')} className={buttonStyles.link}>
             <ArrowLeftIcon width={16} height={16} />
             {t.back}
           </Link>

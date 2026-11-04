@@ -8,8 +8,6 @@ import { CloseIcon, MenuIcon } from './icons';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 
-const SECTIONS = ['featured', 'about', 'experience', 'projects', 'stack', 'contact'] as const;
-
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);
   const home = localePath(locale);
@@ -21,7 +19,15 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
 
-  const links = SECTIONS.map((id) => ({ id, href: `${home}#${id}`, label: dict.nav[id] }));
+  // Experiência tem página própria; as demais entradas levam às seções da home
+  const links = [
+    { id: 'home', href: home, label: dict.nav.home },
+    { id: 'about', href: `${home}#about`, label: dict.nav.about },
+    { id: 'experience', href: localePath(locale, 'experience'), label: dict.nav.experience },
+    { id: 'projects', href: `${home}#projects`, label: dict.nav.projects },
+    { id: 'stack', href: `${home}#stack`, label: dict.nav.stack },
+    { id: 'contact', href: `${home}#contact`, label: dict.nav.contact },
+  ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-200/80 bg-white/85 backdrop-blur dark:border-zinc-800/80 dark:bg-zinc-950/85">

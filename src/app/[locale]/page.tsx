@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ExternalLink } from '@/components/ExternalLink';
-import { FeaturedExperience } from '@/components/FeaturedExperience';
+import { ExperienceCard } from '@/components/ExperienceCard';
 import { ArrowIcon, DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from '@/components/icons';
 import { ProjectCard } from '@/components/ProjectCard';
-import { Container, Section, TagList, buttonStyles } from '@/components/ui';
+import { Container, Section, buttonStyles } from '@/components/ui';
 import { getDictionary } from '@/data/dictionary';
 import { experience } from '@/data/experience';
 import { profile } from '@/data/profile';
@@ -50,11 +50,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {profile.intro[locale]}
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link
-                href={localePath(locale, 'experience/crmundi')}
-                className={buttonStyles.primary}
-              >
-                {dict.hero.featured}
+              <Link href={localePath(locale, 'experience')} className={buttonStyles.primary}>
+                {dict.hero.experience}
                 <ArrowIcon width={16} height={16} />
               </Link>
               <a href="#projects" className={buttonStyles.secondary}>
@@ -105,13 +102,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </Container>
       </section>
 
-      {/* PRINCIPAL EXPERIÊNCIA PROFISSIONAL */}
-      <Section id="featured" index="01" title={dict.sections.featured}>
-        <FeaturedExperience locale={locale} dict={dict} />
-      </Section>
-
       {/* SOBRE */}
-      <Section id="about" index="02" title={dict.sections.about}>
+      <Section id="about" index="01" title={dict.sections.about}>
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div className="space-y-5 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
             {profile.about[locale].map((p) => (
@@ -152,53 +144,24 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </Section>
 
-      {/* EXPERIÊNCIA */}
-      <Section id="experience" index="03" title={dict.sections.experience}>
-        <ol className="space-y-12">
+      {/* EXPERIÊNCIA PROFISSIONAL */}
+      <Section
+        id="experience"
+        index="02"
+        title={dict.sections.experience}
+        lead={dict.sections.experienceLead}
+      >
+        <div className="space-y-4">
           {experience.map((job) => (
-            <li key={job.company.pt} className="grid gap-4 md:grid-cols-[200px_1fr]">
-              <div className="font-mono text-sm text-zinc-500">{job.period[locale]}</div>
-              <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-                  {job.role[locale]} <span className="text-zinc-400">·</span>{' '}
-                  <span className="text-accent-700 dark:text-accent-400">
-                    {job.company[locale]}
-                  </span>
-                </h3>
-                <p className="mt-1 text-sm text-zinc-500">{job.context[locale]}</p>
-                {job.caseStudy && (
-                  <Link
-                    href={localePath(locale, job.caseStudy)}
-                    className={`mt-3 ${buttonStyles.link}`}
-                  >
-                    {dict.featured.cta}: CRMundi & ChatMundi
-                    <ArrowIcon width={16} height={16} />
-                  </Link>
-                )}
-                <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-                  {job.highlights[locale].map((h) => (
-                    <li key={h} className="flex gap-2.5">
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 size-1 shrink-0 rounded-full bg-zinc-400"
-                      />
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4">
-                  <TagList items={job.tech} label={dict.project.stack} />
-                </div>
-              </div>
-            </li>
+            <ExperienceCard key={job.id} job={job} locale={locale} dict={dict} />
           ))}
-        </ol>
+        </div>
       </Section>
 
       {/* PROJETOS */}
       <Section
         id="projects"
-        index="04"
+        index="03"
         title={dict.sections.projects}
         lead={dict.sections.projectsLead}
       >
@@ -216,7 +179,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Section>
 
       {/* STACK */}
-      <Section id="stack" index="05" title={dict.sections.stack} lead={dict.sections.stackLead}>
+      <Section id="stack" index="04" title={dict.sections.stack} lead={dict.sections.stackLead}>
         <dl className="grid gap-px overflow-hidden rounded-xl border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
           {stack.map((group) => (
             <div key={group.category.en} className="bg-white p-6 dark:bg-zinc-950">
@@ -234,7 +197,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* CONTATO */}
       <Section
         id="contact"
-        index="06"
+        index="05"
         title={dict.sections.contact}
         lead={dict.sections.contactLead}
       >
