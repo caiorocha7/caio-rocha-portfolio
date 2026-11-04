@@ -7,6 +7,8 @@ export interface Experience {
   context: Localized;
   highlights: Localized<string[]>;
   tech: string[];
+  /** Caminho do estudo de caso (sem idioma), quando existir. */
+  caseStudy?: string;
 }
 
 export const experience: Experience[] = [
@@ -18,18 +20,19 @@ export const experience: Experience[] = [
       pt: 'Remoto · PJ até mar/2026, CLT de abr/2026 a nov/2026',
       en: 'Remote · contractor until Mar 2026, full-time employee from Apr to Nov 2026',
     },
+    caseStudy: 'experience/crmundi',
     highlights: {
       pt: [
-        'APIs REST, microsserviços e funcionalidades em uma plataforma SaaS multi-tenant de CRM, vendas e financeiro.',
-        'Integração do atendimento via WhatsApp ao CRM com Chatwoot e Evolution API: webhooks, WebSocket, provisionamento idempotente por tenant e SSO/JWT.',
+        'APIs REST, microsserviços e funcionalidades no CRMundi, plataforma SaaS multi-tenant de vendas, financeiro e atendimento para agências de viagem.',
+        'ChatMundi: atendimento WhatsApp nativo no CRM com Chatwoot e Evolution API, provisionamento idempotente por tenant, SSO com JWT RS256/JWKS e microsserviço FastAPI com WebSocket.',
         'Distribuição transacional de atendimentos (round robin), RBAC e regras de ownership com locks, controle de concorrência e isolamento de dados.',
         'Assistente gerencial com LLMs que interpreta perguntas e consulta dados por rotinas determinísticas, com validações e proteção contra prompt injection.',
         'Correção de problemas de atomicidade e concorrência no MySQL com transações, FOR UPDATE e savepoints; faturamento e geração de PDFs com AWS Lambda.',
         'Contribuições em testes com Pytest, migrations Alembic, documentação, hardening de JWT, CI/CD e resiliência durante indisponibilidades de APIs externas.',
       ],
       en: [
-        'Built REST APIs, microservices and features for a multi-tenant SaaS platform covering CRM, sales and finance.',
-        'Integrated WhatsApp customer service into the CRM through Chatwoot and Evolution API: webhooks, WebSocket, idempotent per-tenant provisioning and SSO/JWT.',
+        'Built REST APIs, microservices and features for CRMundi, a multi-tenant SaaS for travel agencies covering sales, finance and customer service.',
+        'ChatMundi: native WhatsApp customer service in the CRM with Chatwoot and Evolution API, idempotent per-tenant provisioning, RS256/JWKS SSO and a FastAPI microservice with WebSocket.',
         'Implemented transactional round-robin assignment, RBAC and ownership rules with locks, concurrency control and data isolation.',
         'Developed an LLM-based management assistant that interprets questions and queries data through deterministic routines, with validation and prompt-injection safeguards.',
         'Fixed atomicity and concurrency issues in MySQL using transactions, FOR UPDATE and savepoints; built billing and PDF generation on AWS Lambda.',

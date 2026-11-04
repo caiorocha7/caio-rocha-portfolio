@@ -8,7 +8,7 @@ import { CloseIcon, MenuIcon } from './icons';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 
-const SECTIONS = ['about', 'experience', 'projects', 'stack', 'contact'] as const;
+const SECTIONS = ['featured', 'about', 'experience', 'projects', 'stack', 'contact'] as const;
 
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);

@@ -48,7 +48,7 @@ export function ProjectCard({
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-zinc-500">
             <span>0{index + 1}</span>
             <span aria-hidden="true">·</span>
-            <span>{project.testsBadge[locale]}</span>
+            <span>{dict.project.personal}</span>
           </div>
           <h3
             id={`project-${project.slug}`}

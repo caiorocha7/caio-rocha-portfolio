@@ -6,7 +6,7 @@ import { absoluteUrl } from '@/lib/site';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ['', ...projects.map((p) => `projects/${p.slug}`)];
+  const paths = ['', 'experience/crmundi', ...projects.map((p) => `projects/${p.slug}`)];
   return paths.flatMap((path) =>
     locales.map((locale) => ({
       url: absoluteUrl(localePath(locale, path)),
