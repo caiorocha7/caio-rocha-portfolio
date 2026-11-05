@@ -9,7 +9,7 @@ import { getDictionary } from '@/data/dictionary';
 import { experience } from '@/data/experience';
 import { profile } from '@/data/profile';
 import { projects } from '@/data/projects';
-import { stack } from '@/data/stack';
+import { skillLabel, stack } from '@/data/stack';
 import { isLocale, localePath } from '@/lib/i18n';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -173,14 +173,31 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {/* STACK */}
       <Section id="stack" index="04" title={dict.sections.stack} lead={dict.sections.stackLead}>
-        <dl className="grid gap-px overflow-hidden rounded-xl border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-800">
+        <dl className="grid gap-px overflow-hidden rounded-xl border border-zinc-200 bg-zinc-200 sm:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
           {stack.map((group) => (
             <div key={group.category.en} className="bg-white p-6 dark:bg-zinc-950">
               <dt className="font-mono text-xs tracking-widest text-zinc-500 uppercase">
                 {group.category[locale]}
               </dt>
-              <dd className="mt-3 text-sm leading-relaxed text-zinc-800 dark:text-zinc-200">
-                {group.items.join(' · ')}
+              <dd className="mt-3 space-y-2 text-sm leading-relaxed">
+                {(
+                  [
+                    [dict.skills.work, group.work, 'text-zinc-900 dark:text-zinc-100'],
+                    [dict.skills.personal, group.personal, 'text-zinc-700 dark:text-zinc-300'],
+                    [
+                      dict.skills.tools,
+                      group.tools?.[locale] ?? [],
+                      'text-zinc-700 dark:text-zinc-300',
+                    ],
+                  ] as const
+                )
+                  .filter(([, items]) => items.length > 0)
+                  .map(([label, items, tone]) => (
+                    <p key={label} className={tone}>
+                      <span className="text-zinc-500">{label}: </span>
+                      {items.map((s) => skillLabel(s, locale)).join(' · ')}
+                    </p>
+                  ))}
               </dd>
             </div>
           ))}

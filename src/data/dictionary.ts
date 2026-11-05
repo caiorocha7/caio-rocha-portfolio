@@ -39,14 +39,16 @@ const pt = {
     projects: 'Projetos pessoais',
     projectsLead:
       'Três sistemas independentes que desenvolvi e publiquei com código aberto, testes automatizados, CI e limitações documentadas.',
-    stack: 'Tecnologias',
-    stackLead: 'Tecnologias que uso profissionalmente e nos projetos publicados.',
+    stack: 'Competências técnicas',
+    stackLead:
+      'Organizadas por área, separando o que uso profissionalmente do que aprofundo nos projetos próprios.',
     contact: 'Contato',
     contactLead:
-      'Estou aberto a oportunidades remotas em backend, full stack e engenharia de IA. A forma mais rápida de falar comigo é por e-mail ou LinkedIn.',
+      'Estou aberto a oportunidades remotas em engenharia de software, full stack, backend, integrações e IA aplicada. A forma mais rápida de falar comigo é por e-mail ou LinkedIn.',
     education: 'Formação',
     strengths: 'Áreas de atuação',
   },
+  skills: { work: 'Profissional', personal: 'Projetos próprios', tools: 'Ferramentas' },
   experience: {
     full: 'Ver experiência completa',
     caseStudy: 'Explorar estudo de caso CRMundi',
@@ -164,14 +166,16 @@ const en: Dictionary = {
     projects: 'Personal projects',
     projectsLead:
       'Three independent systems I built and published as open source, with automated tests, CI and documented limitations.',
-    stack: 'Technologies',
-    stackLead: 'Technologies I use professionally and in my published projects.',
+    stack: 'Technical skills',
+    stackLead:
+      'Grouped by area, separating what I use professionally from what I explore further in my own projects.',
     contact: 'Contact',
     contactLead:
-      'I’m open to remote roles in backend, full stack and AI engineering. The fastest way to reach me is by email or LinkedIn.',
+      'I’m open to remote roles in software engineering, full stack, backend, integrations and applied AI. The fastest way to reach me is by email or LinkedIn.',
     education: 'Education',
     strengths: 'Focus areas',
   },
+  skills: { work: 'Professional', personal: 'Own projects', tools: 'Tools' },
   experience: {
     full: 'View full experience',
     caseStudy: 'Explore the CRMundi case study',

@@ -28,8 +28,8 @@ export const experience: Experience[] = [
     role: { pt: 'Desenvolvedor de Software (Full Stack)', en: 'Software Developer (Full Stack)' },
     period: { pt: 'jul/2025 a nov/2026', en: 'Jul 2025 to Nov 2026' },
     context: {
-      pt: 'Remoto',
-      en: 'Remote',
+      pt: 'Fortaleza, CE · remoto',
+      en: 'Fortaleza, Brazil · remote',
     },
     product: { name: crmundi.title, tagline: crmundi.subtitle },
     summary: crmundi.summary,

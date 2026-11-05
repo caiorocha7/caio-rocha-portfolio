@@ -58,8 +58,8 @@ export const crmundi = {
 
   /** Resumo de 3 a 5 linhas: home e página de experiência. */
   summary: {
-    pt: 'Atuei de forma abrangente na evolução do CRMundi e do ChatMundi, com contribuições em vendas e ordens de serviço, financeiro, faturamento, atendimento WhatsApp, integrações, automações, segurança e Inteligência Artificial. Desenvolvi APIs, um microsserviço, interfaces Angular e soluções para problemas de concorrência e consistência de dados em MySQL.',
-    en: 'I worked broadly on the evolution of CRMundi and ChatMundi, contributing to sales and service orders, finance, billing, WhatsApp customer service, integrations, automation, security and artificial intelligence. I built APIs, a microservice, Angular interfaces and solutions to concurrency and data-consistency problems in MySQL.',
+    pt: 'Participei da construção e da evolução de várias áreas do CRMundi, de vendas, ordens de serviço e financeiro a faturamento, pós-venda e relatórios. Estive desde o início na implementação do ChatMundi, que integrou o atendimento WhatsApp ao CRM, e trabalhei em distribuição Round Robin, RBAC, consistência transacional, automações na AWS e um assistente gerencial com LLMs.',
+    en: 'I helped build and evolve several areas of CRMundi, from sales, service orders and finance to billing, post-sale and reporting. I was involved from the start in building ChatMundi, which brought WhatsApp customer service into the CRM, and worked on Round Robin assignment, RBAC, transactional consistency, AWS automation and an LLM-powered management assistant.',
   } satisfies Localized,
 
   tech: [
@@ -70,6 +70,7 @@ export const crmundi = {
     'Angular',
     'TypeScript',
     'Chatwoot',
+    'WebSocket',
     'AWS',
     'LLMs',
   ],
@@ -77,12 +78,12 @@ export const crmundi = {
   /** Resumo executivo do estudo de caso. */
   executive: {
     pt: [
-      'O CRMundi é uma plataforma SaaS multi-tenant de gestão comercial, financeira e de atendimento para agências de viagem. O ChatMundi é a camada de atendimento WhatsApp, baseada em um fork do Chatwoot, que passou a funcionar também dentro do CRM.',
+      'O CRMundi é uma plataforma SaaS multi-tenant de gestão comercial, financeira e de atendimento para agências de viagem. O ChatMundi é a solução de atendimento WhatsApp integrada ao produto, de cuja implementação participei desde o início: usa o Chatwoot open source como base de atendimento e combina Evolution API, um microsserviço próprio, webhooks e tempo real via WebSocket para que as conversas aconteçam dentro do CRM.',
       'Entrei em julho de 2025, quando o produto já existia, e participei da sua evolução até novembro de 2026. Comecei com integrações pontuais e assumi, ao longo do tempo, módulos completos de ponta a ponta, integrações entre sistemas, mudanças transversais com rollout controlado e IA aplicada.',
       'Trabalhei com backend Python/FastAPI, frontend Angular, MySQL, integrações externas e serviços AWS, sempre dentro de um time e sobre uma arquitetura que eu não criei, mas que estendi e endureci em praticamente todos os domínios principais.',
     ],
     en: [
-      'CRMundi is a multi-tenant SaaS platform for travel agencies covering sales, finance and customer service. ChatMundi is the WhatsApp customer-service layer, based on a Chatwoot fork, which also became available inside the CRM.',
+      'CRMundi is a multi-tenant SaaS platform for travel agencies covering sales, finance and customer service. ChatMundi is the WhatsApp customer-service solution integrated into the product, which I helped build from the start: it uses open-source Chatwoot as its customer-service foundation and combines Evolution API, an in-house microservice, webhooks and real-time WebSocket updates so conversations happen inside the CRM.',
       'I joined in July 2025, when the product already existed, and took part in its evolution until November 2026. I started with targeted integrations and, over time, took on complete end-to-end modules, cross-system integrations, cross-cutting changes with controlled rollouts and applied AI.',
       'I worked with a Python/FastAPI backend, an Angular frontend, MySQL, external integrations and AWS services, always as part of a team and on an architecture I did not create but extended and hardened across nearly every core domain.',
     ],
@@ -123,10 +124,10 @@ export const crmundi = {
       },
     },
     {
-      value: '4.5.2 → 4.14.1',
+      value: 'OFF → SHADOW → ENFORCE',
       label: {
-        pt: 'fork Chatwoot atualizado em 5 merges incrementais',
-        en: 'Chatwoot fork upgraded in 5 incremental merges',
+        pt: 'ativação gradual por tenant de distribuição e visibilidade',
+        en: 'gradual per-tenant rollout of assignment and visibility',
       },
     },
     {
@@ -331,6 +332,12 @@ export const crmundi = {
       },
       items: [
         c(
+          'Implementação do ChatMundi',
+          'Building ChatMundi',
+          'Participei desde o início da solução que levou o WhatsApp para dentro do CRM, conectando a base de atendimento Chatwoot, a Evolution API, um microsserviço próprio, webhooks e autenticação entre os serviços.',
+          'Took part from the start in the solution that brought WhatsApp into the CRM, connecting the Chatwoot customer-service foundation, Evolution API, an in-house microservice, webhooks and authentication between services.',
+        ),
+        c(
           'Atendimento nativo no CRM',
           'Native customer service in the CRM',
           'Conversas com filtros e etiquetas, mensagens com anexos e áudio, resolver e reabrir e contexto do cliente na conversa.',
@@ -355,10 +362,10 @@ export const crmundi = {
           'Chat domain extracted into a dedicated FastAPI service, with real time over tenant-authenticated WebSocket.',
         ),
         c(
-          'Fork Chatwoot (Rails e Sidekiq)',
-          'Chatwoot fork (Rails and Sidekiq)',
-          'Webhooks de integração, hardening de jobs e atualização da base de 4.5.2 para 4.14.1 preservando as customizações.',
-          'Integration webhooks, job hardening and an upgrade of the base from 4.5.2 to 4.14.1 preserving the customizations.',
+          'Base de atendimento customizada (Rails e Sidekiq)',
+          'Customized customer-service foundation (Rails and Sidekiq)',
+          'Webhooks de integração e hardening de jobs na base Chatwoot do produto, mantida atualizada (4.5.2 para 4.14.1) sem perder as customizações.',
+          'Integration webhooks and job hardening on the product’s Chatwoot foundation, kept up to date (4.5.2 to 4.14.1) without losing the customizations.',
         ),
         c(
           'Conversa vira oportunidade',
@@ -655,13 +662,13 @@ export const crmundi = {
 
   attribution: {
     pt: [
-      'Trabalhei em um time, sobre um produto que já existia. Não criei a arquitetura multi-tenant original, o pipeline base de CI/CD, a camada de provedores de LLM, o agente de IA do ChatMundi, a integração com o WhatsApp oficial nem o motor de conciliação financeira.',
+      'Trabalhei em um time, sobre um produto que já existia. O Chatwoot é um projeto open source usado como base do ChatMundi, não um software que eu tenha criado. Também não criei a arquitetura multi-tenant original, o pipeline base de CI/CD, a camada de provedores de LLM, o agente de IA do ChatMundi, a integração com o WhatsApp oficial nem o motor de conciliação financeira.',
       'Itens marcados como colaboração foram construídos sobre bases de outros autores; descrevo apenas a minha parte.',
       'O Disparador de Mensagens e as migrations do banco global estavam integrados apenas no ambiente de desenvolvimento ao fim do meu período. O cancelamento centralizado de OS estava em branch, ainda não integrado.',
       'O CRMundi é proprietário: não publico código, capturas de tela, nomes internos, configurações nem a topologia da infraestrutura. Mais detalhes podem ser apresentados em entrevista.',
     ],
     en: [
-      'I worked in a team, on a product that already existed. I did not create the original multi-tenant architecture, the base CI/CD pipeline, the LLM provider layer, the ChatMundi AI agent, the official WhatsApp integration or the financial reconciliation engine.',
+      'I worked in a team, on a product that already existed. Chatwoot is an open-source project used as ChatMundi’s foundation, not software I created. I also did not create the original multi-tenant architecture, the base CI/CD pipeline, the LLM provider layer, the ChatMundi AI agent, the official WhatsApp integration or the financial reconciliation engine.',
       'Items marked as collaboration were built on foundations by other authors; I describe only my part.',
       'The Message Broadcaster and the global-database migrations were integrated only into the development environment at the end of my tenure. Centralized service-order cancellation was in a branch, not yet merged.',
       'CRMundi is proprietary: I do not publish code, screenshots, internal names, configurations or the infrastructure topology. More detail can be shared in an interview.',

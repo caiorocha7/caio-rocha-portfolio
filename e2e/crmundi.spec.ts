@@ -124,7 +124,14 @@ for (const [locale, headings] of [
         name: locale === 'pt' ? 'Escopo verificado' : 'Verified scope',
       }),
     ).toBeVisible();
-    await expect(page.getByText('4.5.2 → 4.14.1')).toBeVisible();
+    await expect(page.getByText('polling → WebSocket')).toBeVisible();
+    // ChatMundi apresentado como solução integrada, não como mera atualização do Chatwoot
+    await page.locator('#domain-chatmundi summary').click();
+    await expect(
+      page
+        .locator('#domain-chatmundi')
+        .getByText(locale === 'pt' ? 'Implementação do ChatMundi' : 'Building ChatMundi'),
+    ).toBeVisible();
     await expect(page.locator('main')).not.toContainText(/commits? (feitos|authored)|\d+ commits/i);
     // 8 domínios expansíveis, fechados por padrão
     const domains = page.locator('details[id^="domain-"]');
@@ -201,6 +208,47 @@ for (const [locale, role, focus] of [
         /\d+\s*(meses|months)|1 ano e 4|months of experience/i,
       );
     }
+  });
+}
+
+for (const [locale, title, groups, work, personal] of [
+  [
+    'pt',
+    'Competências técnicas',
+    [
+      'Backend e dados',
+      'Frontend e integrações',
+      'IA aplicada e ferramentas',
+      'Cloud, qualidade e segurança',
+    ],
+    'Profissional',
+    'Projetos próprios',
+  ],
+  [
+    'en',
+    'Technical skills',
+    [
+      'Backend and data',
+      'Frontend and integrations',
+      'Applied AI and tools',
+      'Cloud, quality and security',
+    ],
+    'Professional',
+    'Own projects',
+  ],
+] as const) {
+  test(`competências em 4 grupos, separando uso profissional e projetos próprios em ${locale}`, async ({
+    page,
+  }) => {
+    await page.goto(`${locale}/`);
+    const section = page.locator('section#stack');
+    await expect(section.getByRole('heading', { level: 2, name: title })).toBeVisible();
+    await expect(section.locator('dt')).toHaveText([...groups]);
+    await expect(section.getByText(`${work}:`)).toHaveCount(4);
+    await expect(section.getByText(`${personal}:`)).toHaveCount(4);
+    // Claude Code aparece como ferramenta, não como tecnologia profissional da MetaMundi
+    await expect(section.getByText(/Claude Code/)).toHaveCount(1);
+    await expect(page.locator('section#experience')).not.toContainText('Claude Code');
   });
 }
 

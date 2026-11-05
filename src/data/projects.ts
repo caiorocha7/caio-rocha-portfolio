@@ -56,8 +56,8 @@ export const projects: Project[] = [
       en: 'Full stack logistics management platform',
     },
     summary: {
-      pt: 'Gestão de motoristas, veículos, entregas e ocorrências com regras de negócio no servidor, mapa com rastreamento simulado, dashboard operacional e relatórios em CSV.',
-      en: 'Manages drivers, vehicles, deliveries and incidents with server-side business rules, a map with simulated tracking, an operations dashboard and CSV reports.',
+      pt: 'Plataforma de gestão logística com controle de entregas, motoristas, veículos e ocorrências, dashboards operacionais e simulação de rastreamento no mapa, atualizada periodicamente. As regras de negócio ficam no servidor e os relatórios são exportados em CSV.',
+      en: 'Logistics management platform covering deliveries, drivers, vehicles and incidents, with operations dashboards and simulated tracking on a map that refreshes periodically. Business rules live on the server and reports export to CSV.',
     },
     highlights: {
       pt: [
@@ -285,8 +285,8 @@ export const projects: Project[] = [
       en: 'AI for documents with traceable answers',
     },
     summary: {
-      pt: 'Upload e processamento assíncrono de documentos, chat com RAG em que cada afirmação aponta para o trecho que a sustenta, extração estruturada com revisão humana e avaliações quantitativas de IA.',
-      en: 'Asynchronous document ingestion, a RAG chat where every claim points to the passage that supports it, structured extraction with human review and quantitative AI evaluations.',
+      pt: 'Plataforma de análise inteligente de documentos, com perguntas e respostas baseadas em evidências (RAG), citações verificáveis para cada afirmação e extração de informações com revisão humana. A qualidade das respostas é medida por avaliações automatizadas.',
+      en: 'Intelligent document analysis platform with evidence-based questions and answers (RAG), a verifiable citation for every claim and information extraction with human review. Answer quality is measured by automated evaluations.',
     },
     highlights: {
       pt: [
@@ -519,8 +519,8 @@ export const projects: Project[] = [
       en: 'Webhook integrations that survive failures',
     },
     summary: {
-      pt: 'Recebe webhooks assinados, transforma o JSON de forma declarativa e entrega a destinos HTTP de forma assíncrona, idempotente e rastreável, com retentativas, outbox transacional e simulador de falhas.',
-      en: 'Receives signed webhooks, transforms JSON declaratively and delivers to HTTP destinations asynchronously, idempotently and traceably, with retries, a transactional outbox and a failure simulator.',
+      pt: 'Plataforma de automação e integração entre sistemas: recebe webhooks assinados, transforma os dados e os entrega aos destinos com processamento assíncrono em filas, controle de duplicidade, retentativas e reprocessamento de falhas.',
+      en: 'Automation and integration platform between systems: it receives signed webhooks, transforms the data and delivers it to destinations through asynchronous queue processing, duplicate control, retries and failure replay.',
     },
     highlights: {
       pt: [
