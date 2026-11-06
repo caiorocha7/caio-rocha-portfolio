@@ -249,6 +249,12 @@ for (const [locale, title, groups, work, personal] of [
     // Claude Code aparece como ferramenta, não como tecnologia profissional da MetaMundi
     await expect(section.getByText(/Claude Code/)).toHaveCount(1);
     await expect(page.locator('section#experience')).not.toContainText('Claude Code');
+    // Java, Spring Boot e Kafka vêm do OrderFlow: aparecem como projeto próprio, nunca na experiência profissional
+    const personalRow = section.locator('p', { hasText: `${personal}:` }).first();
+    for (const tech of ['Java', 'Spring Boot', 'Apache Kafka']) {
+      await expect(personalRow).toContainText(tech);
+      await expect(page.locator('section#experience')).not.toContainText(tech);
+    }
   });
 }
 

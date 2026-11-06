@@ -3,7 +3,7 @@
 [![CI e deploy](https://github.com/caiorocha7/caio-rocha-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/caiorocha7/caio-rocha-portfolio/actions/workflows/ci.yml)
 
 Site de portfólio de **Caio Rocha**, Engenheiro de Software (Full Stack | Backend | Integrações | IA Aplicada).
-Apresenta a experiência profissional e três projetos completos com estudos de caso, capturas reais, testes e
+Apresenta a experiência profissional e quatro projetos completos com estudos de caso, capturas reais, testes e
 limitações documentadas. O site não oferece currículo para download.
 
 **Site:** https://caiorocha7.github.io/caio-rocha-portfolio/
@@ -29,6 +29,7 @@ Home: apresentação, sobre, experiência profissional (resumo), projetos pessoa
 | RouteOps    | React + NestJS, gestão logística, modelagem de dados, E2E | [routeops-fullstack](https://github.com/caiorocha7/routeops-fullstack)           |
 | DocPilot AI | RAG, segurança de LLMs, extração estruturada, avaliações  | [docpilot-ai](https://github.com/caiorocha7/docpilot-ai)                         |
 | ConnectHub  | Webhooks, idempotência, filas, outbox transacional        | [connecthub-integrations](https://github.com/caiorocha7/connecthub-integrations) |
+| OrderFlow   | Java, Spring Boot, Kafka, concorrência no estoque, DLT    | [orderflow-java](https://github.com/caiorocha7/orderflow-java)                   |
 
 ## Stack
 

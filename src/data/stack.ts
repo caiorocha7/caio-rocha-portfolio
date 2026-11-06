@@ -29,7 +29,17 @@ export const stack: SkillGroup[] = [
       'MySQL',
       { pt: 'APIs REST', en: 'REST APIs' },
     ],
-    personal: ['Node.js', 'NestJS', 'Prisma', 'PostgreSQL', 'Redis', 'Celery'],
+    personal: [
+      'Java',
+      'Spring Boot',
+      'Apache Kafka',
+      'Node.js',
+      'NestJS',
+      'Prisma',
+      'PostgreSQL',
+      'Redis',
+      'Celery',
+    ],
   },
   {
     category: { pt: 'Frontend e integrações', en: 'Frontend and integrations' },
@@ -69,6 +79,6 @@ export const stack: SkillGroup[] = [
       'JWT/JWKS',
       'RBAC',
     ],
-    personal: ['GitHub Actions', 'Playwright', 'Vitest'],
+    personal: ['GitHub Actions', 'JUnit 5', 'Testcontainers', 'Playwright', 'Vitest'],
   },
 ];

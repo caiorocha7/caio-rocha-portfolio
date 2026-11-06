@@ -19,12 +19,12 @@ export const profile = {
   about: {
     pt: [
       'Tenho formação em Engenharia de Software e pós-graduação em Inteligência Artificial pelo iCEV. Na MetaMundi, participei da construção e da evolução do CRMundi, um SaaS multi-tenant para agências de viagem, em vendas, ordens de serviço, financeiro, faturamento, pós-venda e relatórios. Também participei desde o início da implementação do ChatMundi, a solução que levou o atendimento WhatsApp para dentro do produto.',
-      'Gosto de problemas que atravessam o sistema: regras de negócio que precisam continuar corretas sob concorrência, integrações entre serviços, permissões e visibilidade de dados, e IA aplicada com respostas fundamentadas em dados reais. Nos projetos próprios, aprofundo Node.js, NestJS, React e PostgreSQL, além de RAG, embeddings e avaliação de respostas de LLMs.',
+      'Gosto de problemas que atravessam o sistema: regras de negócio que precisam continuar corretas sob concorrência, integrações entre serviços, permissões e visibilidade de dados, e IA aplicada com respostas fundamentadas em dados reais. Nos projetos próprios, aprofundo Java com Spring Boot e Kafka, Node.js, NestJS, React e PostgreSQL, além de RAG, embeddings e avaliação de respostas de LLMs.',
       'No dia a dia, uso ferramentas de desenvolvimento assistido por IA, como o Claude Code, para acelerar implementação, investigação e revisão, sempre validando o resultado com testes automatizados e CI.',
     ],
     en: [
       'I studied Software Engineering and Artificial Intelligence (postgraduate program) at iCEV. At MetaMundi I helped build and evolve CRMundi, a multi-tenant SaaS for travel agencies, across sales, service orders, finance, billing, post-sale and reporting. I was also involved from the start in building ChatMundi, the solution that brought WhatsApp customer service into the product.',
-      'I enjoy problems that cut across the whole system: business rules that must stay correct under concurrency, integrations between services, permissions and data visibility, and applied AI with answers grounded in real data. In my own projects I go deeper into Node.js, NestJS, React and PostgreSQL, as well as RAG, embeddings and LLM answer evaluation.',
+      'I enjoy problems that cut across the whole system: business rules that must stay correct under concurrency, integrations between services, permissions and data visibility, and applied AI with answers grounded in real data. In my own projects I go deeper into Java with Spring Boot and Kafka, Node.js, NestJS, React and PostgreSQL, as well as RAG, embeddings and LLM answer evaluation.',
       'In my daily work I use AI-assisted development tools such as Claude Code to speed up implementation, investigation and review, always validating the result with automated tests and CI.',
     ],
   } satisfies Localized<string[]>,

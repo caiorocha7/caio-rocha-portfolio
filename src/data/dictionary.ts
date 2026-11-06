@@ -38,7 +38,7 @@ const pt = {
     experienceLead: 'Onde apliquei engenharia de software em produtos reais.',
     projects: 'Projetos pessoais',
     projectsLead:
-      'Três sistemas independentes que desenvolvi e publiquei com código aberto, testes automatizados, CI e limitações documentadas.',
+      'Quatro sistemas independentes que desenvolvi e publiquei com código aberto, testes automatizados, CI e limitações documentadas.',
     stack: 'Competências técnicas',
     stackLead:
       'Organizadas por área, separando o que uso profissionalmente do que aprofundo nos projetos próprios.',
@@ -165,7 +165,7 @@ const en: Dictionary = {
     experienceLead: 'Where I have applied software engineering to real products.',
     projects: 'Personal projects',
     projectsLead:
-      'Three independent systems I built and published as open source, with automated tests, CI and documented limitations.',
+      'Four independent systems I built and published as open source, with automated tests, CI and documented limitations.',
     stack: 'Technical skills',
     stackLead:
       'Grouped by area, separating what I use professionally from what I explore further in my own projects.',

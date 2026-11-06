@@ -24,7 +24,8 @@ Os números vêm dos READMEs e do CI de cada repositório. Ao mudar, atualize `t
 
 As capturas são **reais**, tiradas da aplicação em execução e versionadas em `docs/screenshots` de cada repositório.
 
-1. Clone os repositórios ao lado deste (`../routeops-fullstack`, `../docpilot-ai`, `../connecthub-integrations`).
+1. Clone os repositórios ao lado deste (`../routeops-fullstack`, `../docpilot-ai`, `../connecthub-integrations`,
+   `../orderflow-java`).
 2. Atualize as capturas no próprio repositório do projeto.
 3. Rode `pnpm images`, que converte os PNGs selecionados em WebP (1600 px, qualidade 82) em `public/projects/<slug>/`.
 4. Se adicionar ou remover arquivos, ajuste a lista em `scripts/optimize-images.mjs` e em `src/data/projects.ts`.

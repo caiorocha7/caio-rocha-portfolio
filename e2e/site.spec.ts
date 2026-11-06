@@ -9,6 +9,7 @@ const PROJECTS = [
     name: 'ConnectHub',
     repo: 'https://github.com/caiorocha7/connecthub-integrations',
   },
+  { slug: 'orderflow', name: 'OrderFlow', repo: 'https://github.com/caiorocha7/orderflow-java' },
 ];
 
 /** Falha o teste se a página emitir erros de console ou exceções. */
@@ -167,7 +168,8 @@ test('SEO: metadata, Open Graph, sitemap e robots', async ({ page, request }) =>
   await expect(page.locator('link[rel="alternate"][hreflang="pt-BR"]')).toBeAttached();
 
   const sitemap = await (await request.get(`${BASE}/sitemap.xml`)).text();
-  expect(sitemap.match(/<loc>/g)).toHaveLength(12);
+  expect(sitemap.match(/<loc>/g)).toHaveLength(14);
+  expect(sitemap).toContain('/en/projects/orderflow/');
   expect(sitemap).toContain('/pt/experience/');
   expect(sitemap).toContain('/en/experience/crmundi/');
   expect(sitemap).toContain('/pt/projects/connecthub/');

@@ -13,7 +13,7 @@ export interface TestSuite {
 }
 
 export interface Project {
-  slug: 'routeops' | 'docpilot-ai' | 'connecthub';
+  slug: 'routeops' | 'docpilot-ai' | 'connecthub' | 'orderflow';
   name: string;
   repo: string;
   /** Demonstração pública, apenas se existir. */
@@ -732,6 +732,236 @@ export const projects: Project[] = [
         {
           pt: 'Dashboard do ConnectHub em tela de celular',
           en: 'ConnectHub dashboard on a phone screen',
+        },
+        { pt: 'Layout responsivo', en: 'Responsive layout' },
+        true,
+      ),
+    ],
+  },
+  {
+    slug: 'orderflow',
+    name: 'OrderFlow',
+    repo: 'https://github.com/caiorocha7/orderflow-java',
+    tagline: {
+      pt: 'Pedidos e estoque com Java, Kafka e consistência sob concorrência',
+      en: 'Orders and inventory with Java, Kafka and consistency under concurrency',
+    },
+    summary: {
+      pt: 'Plataforma de gestão de pedidos e estoque com backend Java e Spring Boot: reserva de estoque segura sob concorrência, eventos publicados no Kafka por Transactional Outbox, pagamento simulado processado de forma assíncrona e idempotente, com retentativas e Dead Letter Topic.',
+      en: 'Order and inventory management platform with a Java and Spring Boot backend: concurrency-safe stock reservations, events published to Kafka through a Transactional Outbox, and a simulated payment processed asynchronously and idempotently, with retries and a Dead Letter Topic.',
+    },
+    highlights: {
+      pt: [
+        '20 compras simultâneas por 5 unidades vendem exatamente 5 (teste contra PostgreSQL real)',
+        'Outbox transacional, consumidor Kafka idempotente, retry com backoff e DLT com compensação',
+        '75 testes, incluindo Testcontainers com PostgreSQL e Kafka e E2E no navegador',
+      ],
+      en: [
+        '20 concurrent purchases for 5 units sell exactly 5 (tested against a real PostgreSQL)',
+        'Transactional outbox, idempotent Kafka consumer, retries with backoff and a DLT with compensation',
+        '75 tests, including Testcontainers with PostgreSQL and Kafka and browser E2E',
+      ],
+    },
+    stack: [
+      'Java 21',
+      'Spring Boot',
+      'Apache Kafka',
+      'PostgreSQL',
+      'Angular',
+      'TypeScript',
+      'JUnit 5',
+      'Testcontainers',
+      'Docker',
+      'GitHub Actions',
+    ],
+    testsBadge: { pt: '75 testes', en: '75 tests' },
+    problem: {
+      pt: [
+        'Vender produtos com estoque limitado expõe três problemas clássicos: duas pessoas comprando a última unidade ao mesmo tempo, um pagamento que falha ou demora deixando estoque preso, e uma mensagem entregue duas vezes que cobra ou baixa o estoque em dobro.',
+        'O OrderFlow trata cada um com um mecanismo explícito e testado: lock pessimista com ordem fixa na reserva, Transactional Outbox para nunca perder um evento, consumidor idempotente por eventId e compensação automática quando o pagamento falha de forma definitiva.',
+      ],
+      en: [
+        'Selling products with limited stock exposes three classic problems: two people buying the last unit at the same time, a payment that fails or hangs and leaves stock locked, and a message delivered twice that charges or deducts stock twice.',
+        'OrderFlow handles each one with an explicit, tested mechanism: pessimistic locking in a fixed order for reservations, a Transactional Outbox so events are never lost, an idempotent consumer keyed by eventId and automatic compensation when payment fails for good.',
+      ],
+    },
+    architecture: [
+      {
+        layer: { pt: 'Backend', en: 'Backend' },
+        detail: {
+          pt: 'Monólito modular em Spring Boot 4.1 e Java 21 (catalog, ordering, payment, messaging), com ports e adapters onde há troca real de tecnologia: o publicador de eventos e o gateway de pagamento. Não é um sistema de microsserviços.',
+          en: 'Modular monolith on Spring Boot 4.1 and Java 21 (catalog, ordering, payment, messaging), with ports and adapters where technology actually varies: the event publisher and the payment gateway. It is not a microservices system.',
+        },
+      },
+      {
+        layer: { pt: 'Mensageria', en: 'Messaging' },
+        detail: {
+          pt: 'Pedido, reserva e evento no outbox na mesma transação; um relay publica no Kafka com FOR UPDATE SKIP LOCKED. O consumidor de pagamento aplica o resultado de forma idempotente; falhas temporárias são retentadas e, ao esgotar, vão para a DLT.',
+          en: 'Order, reservation and outbox event in one transaction; a relay publishes to Kafka with FOR UPDATE SKIP LOCKED. The payment consumer applies the outcome idempotently; transient failures are retried and, once exhausted, sent to the DLT.',
+        },
+      },
+      {
+        layer: { pt: 'Dados', en: 'Data' },
+        detail: {
+          pt: 'PostgreSQL 18 com Flyway; regras críticas também no banco (CHECK de saldo não negativo, SKU e Idempotency-Key únicos, PK composta de mensagens processadas).',
+          en: 'PostgreSQL 18 with Flyway; critical rules also enforced in the database (non-negative stock CHECK, unique SKU and Idempotency-Key, composite key for processed messages).',
+        },
+      },
+      {
+        layer: { pt: 'Frontend', en: 'Frontend' },
+        detail: {
+          pt: 'Angular 22 (standalone, signals, sem zone.js) servido pelo Nginx na mesma origem da API: dashboard, produtos, estoque, pedidos e linha do tempo do processamento assíncrono de cada pedido.',
+          en: 'Angular 22 (standalone, signals, zoneless) served by Nginx on the same origin as the API: dashboard, products, inventory, orders and a per-order timeline of the asynchronous processing.',
+        },
+      },
+    ],
+    features: {
+      pt: [
+        'Login por sessão com cookie HttpOnly, CSRF e senhas com BCrypt; papéis ADMIN e OPERATOR',
+        'Produtos com SKU único, preço não negativo e controle otimista de versão na edição',
+        'Estoque disponível e reservado, ajuste com motivo e trilha de movimentações',
+        'Pedidos com vários itens, total calculado no servidor e preço congelado na compra',
+        'Pagamento simulado com cenários de aprovação, recusa, falha temporária e indisponibilidade',
+        'Cancelamento com liberação da reserva ou devolução ao estoque, com histórico de status',
+        'Histórico de processamento: outbox, consumo no Kafka, retentativas e DLT',
+      ],
+      en: [
+        'Session login with an HttpOnly cookie, CSRF and BCrypt passwords; ADMIN and OPERATOR roles',
+        'Products with unique SKUs, non-negative prices and optimistic locking on edits',
+        'Available and reserved stock, adjustments with a reason and a movement trail',
+        'Multi-item orders, totals calculated on the server and prices frozen at purchase time',
+        'Simulated payment with approval, decline, transient failure and outage scenarios',
+        'Cancellation that releases the reservation or restocks items, with status history',
+        'Processing history: outbox, Kafka consumption, retries and DLT',
+      ],
+    },
+    decisions: [
+      {
+        title: { pt: 'Lock pessimista com ordem fixa', en: 'Pessimistic locking in a fixed order' },
+        detail: {
+          pt: 'As linhas dos produtos são bloqueadas com SELECT FOR UPDATE sempre em ordem de id antes de validar e reservar. Pedidos pelo mesmo produto são serializados e pedidos com produtos em ordem inversa não entram em deadlock (há teste para os dois casos).',
+          en: 'Product rows are locked with SELECT FOR UPDATE, always ordered by id, before validating and reserving. Orders for the same product are serialized and orders listing products in reverse order do not deadlock (both cases are tested).',
+        },
+      },
+      {
+        title: {
+          pt: 'Outbox em vez de publicar direto',
+          en: 'Outbox instead of publishing directly',
+        },
+        detail: {
+          pt: 'Publicar no Kafka dentro da transação arrisca evento sem pedido; depois do commit, pedido sem evento. Com o outbox, a entrega é at-least-once e a duplicidade fica a cargo do consumidor.',
+          en: 'Publishing to Kafka inside the transaction risks an event without an order; after the commit, an order without an event. With the outbox, delivery is at-least-once and duplicates are handled by the consumer.',
+        },
+      },
+      {
+        title: { pt: 'Idempotência na mesma transação', en: 'Idempotency in the same transaction' },
+        detail: {
+          pt: 'A marca de mensagem processada é gravada junto com o efeito (status, estoque e próximo evento), depois de bloquear o pedido: ou tudo acontece, ou nada. Reenvios do mesmo evento são registrados e ignorados.',
+          en: 'The processed-message marker is written together with the effect (status, stock and next event), after locking the order: either everything happens or nothing does. Re-deliveries of the same event are logged and ignored.',
+        },
+      },
+      {
+        title: { pt: 'Compensação pela DLT', en: 'Compensation through the DLT' },
+        detail: {
+          pt: 'Falha temporária é retentada com backoff; esgotadas as tentativas, a mensagem vai para a Dead Letter Topic, cujo consumidor marca o pedido como falho e devolve a reserva. Mensagens malformadas vão direto para a DLT, sem travar o consumidor.',
+          en: 'Transient failures are retried with backoff; once attempts run out, the message goes to the Dead Letter Topic, whose consumer marks the order as failed and returns the reservation. Malformed messages go straight to the DLT without blocking the consumer.',
+        },
+      },
+    ],
+    tests: [
+      {
+        name: { pt: 'Backend unitários (JUnit 5)', en: 'Backend unit (JUnit 5)' },
+        result: { pt: '25 aprovados', en: '25 passed' },
+      },
+      {
+        name: {
+          pt: 'Integração com Testcontainers (PostgreSQL e Kafka reais)',
+          en: 'Integration with Testcontainers (real PostgreSQL and Kafka)',
+        },
+        result: { pt: '31 aprovados', en: '31 passed' },
+      },
+      {
+        name: { pt: 'Frontend (Vitest)', en: 'Frontend (Vitest)' },
+        result: { pt: '9 aprovados', en: '9 passed' },
+      },
+      {
+        name: {
+          pt: 'E2E (Playwright contra o Docker Compose)',
+          en: 'E2E (Playwright against Docker Compose)',
+        },
+        result: { pt: '10 aprovados', en: '10 passed' },
+      },
+    ],
+    testsNote: {
+      pt: 'Os testes de integração cobrem concorrência na reserva, mensagens duplicadas no Kafka, retentativa, DLT, cancelamento, autenticação e autorização. O CI roda backend, frontend, E2E com a stack completa e varredura de segredos a cada push.',
+      en: 'Integration tests cover reservation concurrency, duplicated Kafka messages, retries, the DLT, cancellation, authentication and authorization. CI runs backend, frontend, E2E against the full stack and secret scanning on every push.',
+    },
+    limitations: {
+      pt: [
+        'O pagamento é simulado: não há integração com meio de pagamento, e o cenário é escolhido no pedido para demonstração.',
+        'Instância única do backend, com sessões em memória; um único broker Kafka.',
+        'Retentativas bloqueantes seguram a partição durante o backoff; outbox e mensagens processadas não têm rotina de limpeza.',
+        'Sem métricas nem tracing distribuído; há health checks e logs estruturados.',
+      ],
+      en: [
+        'Payment is simulated: there is no payment provider integration, and the scenario is chosen per order for demonstration.',
+        'Single backend instance with in-memory sessions; a single Kafka broker.',
+        'Blocking retries hold the partition during backoff; the outbox and processed-message tables have no cleanup job.',
+        'No metrics or distributed tracing yet; health checks and structured logs are in place.',
+      ],
+    },
+    screenshots: [
+      shot(
+        'orderflow',
+        '02-dashboard',
+        {
+          pt: 'Dashboard do OrderFlow com pedidos por status, produtos e alertas de estoque baixo',
+          en: 'OrderFlow dashboard with orders by status, products and low-stock alerts',
+        },
+        { pt: 'Dashboard com dados do banco', en: 'Dashboard backed by the database' },
+      ),
+      shot(
+        'orderflow',
+        '05-order-retry',
+        {
+          pt: 'Pedido com falha temporária retentada até aprovar, com eventos, consumo e tentativas',
+          en: 'Order whose transient failure was retried until approval, with events, consumption and attempts',
+        },
+        { pt: 'Retentativas com backoff', en: 'Retries with backoff' },
+      ),
+      shot(
+        'orderflow',
+        '06-order-dlt',
+        {
+          pt: 'Pedido com falha definitiva enviado à DLT, marcado como falho e com a reserva liberada',
+          en: 'Order with a permanent failure sent to the DLT, marked as failed and with its reservation released',
+        },
+        { pt: 'Dead Letter Topic e compensação', en: 'Dead Letter Topic and compensation' },
+      ),
+      shot(
+        'orderflow',
+        '10-processing',
+        {
+          pt: 'Histórico de processamento com outbox, consumo no Kafka, retentativas e DLT',
+          en: 'Processing history with outbox, Kafka consumption, retries and DLT',
+        },
+        { pt: 'Histórico de processamento', en: 'Processing history' },
+      ),
+      shot(
+        'orderflow',
+        '07-new-order',
+        {
+          pt: 'Formulário de novo pedido com vários itens e escolha do cenário de pagamento simulado',
+          en: 'New order form with multiple items and a choice of simulated payment scenario',
+        },
+        { pt: 'Novo pedido', en: 'New order' },
+      ),
+      shot(
+        'orderflow',
+        '11-mobile-dashboard',
+        {
+          pt: 'Dashboard do OrderFlow em tela de celular',
+          en: 'OrderFlow dashboard on a phone screen',
         },
         { pt: 'Layout responsivo', en: 'Responsive layout' },
         true,

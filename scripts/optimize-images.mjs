@@ -35,6 +35,17 @@ const SOURCES = {
       '16-mobile-dashboard',
     ],
   },
+  orderflow: {
+    repo: 'orderflow-java',
+    files: [
+      '02-dashboard',
+      '05-order-retry',
+      '06-order-dlt',
+      '10-processing',
+      '07-new-order',
+      '11-mobile-dashboard',
+    ],
+  },
 };
 
 for (const [slug, { repo, files }] of Object.entries(SOURCES)) {
