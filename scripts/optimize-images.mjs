@@ -46,6 +46,10 @@ const SOURCES = {
       '11-mobile-dashboard',
     ],
   },
+  subflow: {
+    repo: 'subflow-rails',
+    files: ['dashboard', 'assinaturas', 'cobrancas', 'assinatura-detalhe', 'login', 'dashboard-mobile'],
+  },
 };
 
 for (const [slug, { repo, files }] of Object.entries(SOURCES)) {

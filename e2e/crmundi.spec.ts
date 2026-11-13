@@ -246,9 +246,9 @@ for (const [locale, title, groups, work, personal] of [
     await expect(section.locator('dt')).toHaveText([...groups]);
     await expect(section.getByText(`${work}:`)).toHaveCount(4);
     await expect(section.getByText(`${personal}:`)).toHaveCount(4);
-    // Claude Code aparece como ferramenta, não como tecnologia profissional da MetaMundi
-    await expect(section.getByText(/Claude Code/)).toHaveCount(1);
-    await expect(page.locator('section#experience')).not.toContainText('Claude Code');
+    // Ferramentas de IA aparecem como apoio, não como tecnologia profissional da MetaMundi
+    await expect(section.getByText(/ChatGPT\/Codex/)).toHaveCount(1);
+    await expect(page.locator('section#experience')).not.toContainText('ChatGPT/Codex');
     // Java, Spring Boot e Kafka vêm do OrderFlow: aparecem como projeto próprio, nunca na experiência profissional
     const personalRow = section.locator('p', { hasText: `${personal}:` }).first();
     for (const tech of ['Java', 'Spring Boot', 'Apache Kafka']) {

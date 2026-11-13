@@ -56,12 +56,13 @@ describe('i18n', () => {
 });
 
 describe('projetos', () => {
-  it('destaca exatamente os quatro projetos, com repositórios do autor', () => {
+  it('destaca exatamente os cinco projetos, com repositórios do autor', () => {
     expect(projects.map((p) => p.slug)).toEqual([
       'routeops',
       'docpilot-ai',
       'connecthub',
       'orderflow',
+      'subflow',
     ]);
     for (const p of projects)
       expect(p.repo).toMatch(/^https:\/\/github\.com\/caiorocha7\/[a-z-]+$/);

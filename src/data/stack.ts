@@ -39,12 +39,16 @@ export const stack: SkillGroup[] = [
       'PostgreSQL',
       'Redis',
       'Celery',
+      'Ruby',
+      'Ruby on Rails',
+      'Active Record',
+      'Sidekiq',
     ],
   },
   {
     category: { pt: 'Frontend e integrações', en: 'Frontend and integrations' },
     work: ['Angular', 'TypeScript', 'PrimeNG', 'WebSocket', 'Webhooks', 'n8n'],
-    personal: ['React', 'Next.js', 'Tailwind CSS'],
+    personal: ['React', 'Next.js', 'Tailwind CSS', 'Hotwire', 'RSpec'],
   },
   {
     category: { pt: 'IA aplicada e ferramentas', en: 'Applied AI and tools' },
@@ -61,8 +65,8 @@ export const stack: SkillGroup[] = [
       { pt: 'Avaliação de respostas (evals)', en: 'Answer evaluation (evals)' },
     ],
     tools: {
-      pt: ['Claude Code (desenvolvimento assistido por IA)'],
-      en: ['Claude Code (AI-assisted development)'],
+      pt: ['ChatGPT/Codex e Gemini (desenvolvimento assistido por IA)'],
+      en: ['ChatGPT/Codex and Gemini (AI-assisted development)'],
     },
   },
   {
