@@ -13,7 +13,7 @@ export interface TestSuite {
 }
 
 export interface Project {
-  slug: 'routeops' | 'docpilot-ai' | 'connecthub' | 'orderflow';
+  slug: 'routeops' | 'docpilot-ai' | 'connecthub' | 'orderflow' | 'subflow';
   name: string;
   repo: string;
   /** Demonstração pública, apenas se existir. */
@@ -966,6 +966,75 @@ export const projects: Project[] = [
         { pt: 'Layout responsivo', en: 'Responsive layout' },
         true,
       ),
+    ],
+  },
+  {
+    slug: 'subflow',
+    name: 'SubFlow',
+    repo: 'https://github.com/caiorocha7/subflow-rails',
+    tagline: {
+      pt: 'Gestão SaaS de assinaturas e cobranças recorrentes',
+      en: 'SaaS subscription and recurring billing management',
+    },
+    summary: {
+      pt: 'Plataforma SaaS B2B em Ruby on Rails para organizar clientes, planos, assinaturas e cobranças recorrentes simuladas. O produto mantém isolamento por empresa, auditoria operacional, API REST e uma interface responsiva para acompanhar o ciclo de assinatura.',
+      en: 'A Ruby on Rails B2B SaaS for organizing customers, plans, subscriptions and simulated recurring billing. It keeps company-level isolation, operational auditing, a REST API and a responsive interface for following the subscription lifecycle.',
+    },
+    highlights: {
+      pt: [
+        'Isolamento multi-tenant, autenticação e permissões ADMIN/MEMBER',
+        'Faturas idempotentes por assinatura e período, eventos HMAC e jobs repetíveis',
+        '29 testes RSpec, RuboCop e Brakeman sem alertas, Docker e CI no GitHub Actions',
+      ],
+      en: [
+        'Multi-tenant isolation, authentication and ADMIN/MEMBER permissions',
+        'Idempotent invoices per subscription and period, HMAC events and repeatable jobs',
+        '29 RSpec tests, RuboCop and Brakeman with no findings, Docker and GitHub Actions CI',
+      ],
+    },
+    stack: ['Ruby', 'Ruby on Rails', 'Active Record', 'PostgreSQL', 'Redis', 'Sidekiq', 'Hotwire', 'Turbo', 'Stimulus', 'Tailwind CSS', 'RSpec', 'Docker', 'GitHub Actions'],
+    testsBadge: { pt: '29 testes', en: '29 tests' },
+    problem: {
+      pt: [
+        'Operações de assinatura precisam acompanhar clientes, planos, situação contratual e cobranças sem perder a separação entre empresas ou o histórico de decisões.',
+        'O SubFlow reúne esse ciclo em um monólito Rails: a interface acompanha dados reais, enquanto regras de transição, faturamento, autorização e processamento assíncrono permanecem no servidor.',
+      ],
+      en: [
+        'Subscription operations need to track customers, plans, contract status and billing without losing company boundaries or decision history.',
+        'SubFlow brings that lifecycle into a Rails monolith: the interface follows real data while transition, billing, authorization and asynchronous-processing rules remain on the server.',
+      ],
+    },
+    architecture: [
+      { layer: { pt: 'Aplicação', en: 'Application' }, detail: { pt: 'Monólito modular em Rails 8.1, com controllers finos, Active Record e services para criação, ativação, cancelamento, faturamento e processamento de eventos.', en: 'Modular monolith on Rails 8.1, with thin controllers, Active Record and services for creation, activation, cancellation, billing and event processing.' } },
+      { layer: { pt: 'Dados', en: 'Data' }, detail: { pt: 'PostgreSQL como fonte de verdade, escopo obrigatório por account e índices únicos que protegem a geração de faturas por assinatura e período.', en: 'PostgreSQL as the source of truth, mandatory account scoping and unique indexes protecting invoice generation per subscription and period.' } },
+      { layer: { pt: 'Processamento', en: 'Processing' }, detail: { pt: 'Redis e Sidekiq para jobs de cobrança e eventos de pagamento simulados; os serviços são idempotentes para suportar reentregas.', en: 'Redis and Sidekiq for billing jobs and simulated payment events; services are idempotent to support redelivery.' } },
+      { layer: { pt: 'Interface', en: 'Interface' }, detail: { pt: 'ERB com Hotwire, Turbo, Stimulus e Tailwind CSS, com dashboard financeiro e navegação responsiva.', en: 'ERB with Hotwire, Turbo, Stimulus and Tailwind CSS, with a financial dashboard and responsive navigation.' } },
+    ],
+    features: {
+      pt: ['Cadastro de empresas, usuários, clientes e planos', 'Assinaturas em teste, ativas, em atraso e canceladas', 'Cobranças simuladas com paginação, detalhes e processamento em background', 'API REST por Bearer token e histórico de auditoria', 'Webhooks assinados por HMAC, proteção contra duplicidade e eventos fora de ordem'],
+      en: ['Company, user, customer and plan management', 'Trial, active, overdue and canceled subscriptions', 'Simulated billing with pagination, details and background processing', 'Bearer-token REST API and audit history', 'HMAC-signed webhooks, duplicate protection and out-of-order event handling'],
+    },
+    decisions: [
+      { title: { pt: 'Convenções Rails com services explícitos', en: 'Rails conventions with explicit services' }, detail: { pt: 'As telas permanecem convencionais em ERB, enquanto operações de domínio que alteram assinaturas, faturas e eventos ficam em services testáveis.', en: 'Views remain conventional ERB while domain operations that alter subscriptions, invoices and events live in testable services.' } },
+      { title: { pt: 'Idempotência no banco e na aplicação', en: 'Idempotency in the database and application' }, detail: { pt: 'Índices únicos, transações e locks evitam faturas duplicadas; event_id único e processamento defensivo evitam efeitos repetidos de webhook.', en: 'Unique indexes, transactions and locks prevent duplicate invoices; a unique event_id and defensive processing prevent repeated webhook effects.' } },
+      { title: { pt: 'Escopo por empresa desde a consulta', en: 'Company scoping from the query' }, detail: { pt: 'Recursos web são consultados a partir de current_account, e a API deriva a conta do token Bearer, sem aceitar account_id externo.', en: 'Web resources are queried from current_account, and the API derives the account from the Bearer token without accepting an external account_id.' } },
+      { title: { pt: 'Pagamentos claramente simulados', en: 'Clearly simulated payments' }, detail: { pt: 'A interface identifica a simulação e os eventos de pagamento são usados para demonstrar o fluxo, sem gateway financeiro externo.', en: 'The interface labels the simulation and payment events demonstrate the flow, with no external payment gateway.' } },
+    ],
+    tests: [
+      { name: { pt: 'RSpec', en: 'RSpec' }, result: { pt: '29 aprovados', en: '29 passed' } },
+    ],
+    testsNote: { pt: 'A suíte usa PostgreSQL real e cobre autenticação, permissões, isolamento por tenant, ciclo de assinaturas, faturamento idempotente, jobs, webhooks e API. A CI executa RSpec, RuboCop e Brakeman.', en: 'The suite uses real PostgreSQL and covers authentication, permissions, tenant isolation, subscription lifecycle, idempotent billing, jobs, webhooks and the API. CI runs RSpec, RuboCop and Brakeman.' },
+    limitations: {
+      pt: ['Pagamentos são simulados; não há gateway financeiro ou transferência de dinheiro real.', 'O produto é um MVP de portfólio e não substitui uma plataforma financeira de produção.', 'Notificações e eventos demonstram o fluxo operacional, não representam envio externo real.'],
+      en: ['Payments are simulated; there is no financial gateway or real-money transfer.', 'The product is a portfolio MVP and does not replace a production financial platform.', 'Notifications and events demonstrate the operational flow and do not represent real external delivery.'],
+    },
+    screenshots: [
+      shot('subflow', 'dashboard', { pt: 'Dashboard financeiro do SubFlow com MRR estimado, métricas e atividade recente', en: 'SubFlow financial dashboard with estimated MRR, metrics and recent activity' }, { pt: 'Visão geral financeira', en: 'Financial overview' }),
+      shot('subflow', 'assinaturas', { pt: 'Listagem de assinaturas com cliente, plano, status e próxima cobrança', en: 'Subscription list with customer, plan, status and next billing date' }, { pt: 'Assinaturas recorrentes', en: 'Recurring subscriptions' }),
+      shot('subflow', 'cobrancas', { pt: 'Faturas simuladas paginadas com status, valor e vencimento', en: 'Paginated simulated invoices with status, amount and due date' }, { pt: 'Cobranças simuladas', en: 'Simulated billing' }),
+      shot('subflow', 'assinatura-detalhe', { pt: 'Detalhe da assinatura com status e cobranças relacionadas', en: 'Subscription detail with status and related invoices' }, { pt: 'Detalhe da assinatura', en: 'Subscription detail' }),
+      shot('subflow', 'login', { pt: 'Tela de login responsiva do SubFlow', en: 'Responsive SubFlow login screen' }, { pt: 'Autenticação', en: 'Authentication' }),
+      shot('subflow', 'dashboard-mobile', { pt: 'Dashboard do SubFlow em dispositivo móvel com menu aberto', en: 'SubFlow dashboard on a mobile device with its menu open' }, { pt: 'Layout mobile', en: 'Mobile layout' }, true),
     ],
   },
 ];
